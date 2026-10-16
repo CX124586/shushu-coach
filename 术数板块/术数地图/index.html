@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>00 术数地图</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    :root {
+      --map-line: #d8d0c2;
+      --map-line-soft: rgba(216, 208, 194, 0.58);
+    }
+
+    html {
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: clip;
+      background:
+        linear-gradient(rgba(200, 146, 62, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 146, 62, 0.035) 1px, transparent 1px),
+        linear-gradient(180deg, #f8f3eb 0%, var(--bg) 26%, var(--bg) 100%);
+      background-size: 34px 34px, 34px 34px, 100% 100%;
+    }
+
+    .site-header {
+      border-bottom-color: rgba(216, 208, 194, 0.78);
+    }
+
+    .map-shell {
+      width: min(1420px, 100%);
+      margin: 0 auto;
+      padding: 30px clamp(18px, 4vw, 56px) 64px;
+    }
+
+    .map-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .map-intro h1 {
+      max-width: 860px;
+      font-size: clamp(32px, 4.7vw, 56px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .map-intro .lede {
+      margin: 0;
+      padding-left: 20px;
+      border-left: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .map-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 22px;
+    }
+
+    .metric {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 7px;
+      min-height: 38px;
+      padding: 9px 12px;
+      border: 1px solid rgba(216, 208, 194, 0.8);
+      border-radius: 999px;
+      background: rgba(251, 248, 241, 0.78);
+      color: var(--muted);
+      font-size: 13px;
+      backdrop-filter: blur(8px);
+    }
+
+    .metric strong {
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .map-workspace {
+      display: grid;
+      grid-template-columns: 330px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .control-rail {
+      position: sticky;
+      top: 16px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .control-card {
+      overflow: hidden;
+      border: 1px solid rgba(216, 208, 194, 0.92);
+      border-radius: 12px;
+      background: rgba(251, 248, 241, 0.86);
+      box-shadow: 0 16px 42px rgba(27, 42, 74, 0.08);
+    }
+
+    .control-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 15px 16px 13px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #fffdf7, var(--surface));
+    }
+
+    .control-head strong {
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .control-head span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .choice-list {
+      display: grid;
+      gap: 9px;
+      padding: 14px;
+    }
+
+    .choice {
+      position: relative;
+      display: grid;
+      grid-template-columns: 38px minmax(0, 1fr);
+      gap: 12px;
+      min-height: 92px;
+      padding: 13px;
+      border: 1px solid rgba(216, 208, 194, 0.9);
+      border-radius: 8px;
+      background: rgba(251, 248, 241, 0.76);
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .choice:hover {
+      border-color: rgba(200, 146, 62, 0.72);
+      transform: translateY(-1px);
+    }
+
+    .choice.active {
+      border-color: var(--accent);
+      background: #fffdf7;
+      box-shadow: 0 10px 26px rgba(27, 42, 74, 0.1);
+    }
+
+    .choice-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .choice.active .choice-index {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .choice-body {
+      min-width: 0;
+    }
+
+    .choice-body strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .choice-body small {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .choice-tag {
+      grid-column: 1 / -1;
+      margin-top: 9px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .result-card {
+      overflow: hidden;
+      border: 1px solid rgba(216, 208, 194, 0.92);
+      border-radius: 12px;
+      background: var(--surface);
+      box-shadow: 0 16px 42px rgba(27, 42, 74, 0.08);
+    }
+
+    .result-head {
+      padding: 15px 16px 14px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #fffdf7, var(--surface));
+    }
+
+    .result-kicker {
+      margin: 0 0 6px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .result-title {
+      margin: 0;
+      font-size: 23px;
+      line-height: 1.3;
+    }
+
+    .result-summary {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .result-body {
+      padding: 14px 16px 16px;
+    }
+
+    .result-order {
+      display: grid;
+      gap: 9px;
+      margin-bottom: 14px;
+    }
+
+    .order-step {
+      display: grid;
+      grid-template-columns: 26px minmax(0, 1fr);
+      gap: 9px;
+      align-items: start;
+    }
+
+    .order-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .order-step strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--ink);
+      font-size: 13px;
+    }
+
+    .order-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .result-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 42px;
+      border-radius: 7px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 800;
+      text-decoration: none;
+      transition: background 180ms ease, transform 180ms ease;
+    }
+
+    .result-cta:hover {
+      background: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .result-cta.muted {
+      background: #ece8df;
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    .map-area {
+      display: grid;
+      align-self: stretch;
+      grid-template-rows: auto minmax(560px, 1fr) auto;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .map-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 14px;
+      border: 1px solid rgba(216, 208, 194, 0.9);
+      border-radius: 10px;
+      background: rgba(251, 248, 241, 0.78);
+      backdrop-filter: blur(8px);
+    }
+
+    .map-toolbar-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .map-toolbar-title::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(200, 146, 62, 0.12);
+    }
+
+    .view-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--bg);
+    }
+
+    .view-toggle button {
+      min-width: 64px;
+      padding: 7px 11px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 180ms ease, color 180ms ease;
+    }
+
+    .view-toggle button.active {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .route-board {
+      position: relative;
+      display: grid;
+      grid-template-columns: 98px minmax(0, 1fr);
+      min-height: 560px;
+      height: 100%;
+      overflow: visible;
+      border: 1px solid rgba(216, 208, 194, 0.9);
+      border-radius: 12px;
+      background: rgba(251, 248, 241, 0.74);
+      box-shadow: 0 18px 50px rgba(27, 42, 74, 0.08);
+    }
+
+    .route-board::before {
+      content: "";
+      position: absolute;
+      inset: -16% -12% -14% -12%;
+      z-index: 0;
+      background-image: url("../../assets/bagua-board-v3.svg?v=20261016-v3");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: clamp(840px, 94vw, 1080px) auto;
+      opacity: 0.76;
+      mix-blend-mode: normal;
+      filter: drop-shadow(0 24px 40px rgba(30, 18, 7, 0.24)) saturate(1.02) contrast(1.02);
+      -webkit-mask-image: none;
+      mask-image: none;
+      pointer-events: none;
+    }
+
+    .route-origin {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px 12px;
+      border-right: 1px solid var(--line);
+    }
+
+    .origin-node {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      padding: 14px 9px;
+      border: 1px solid rgba(200, 146, 62, 0.52);
+      border-radius: 10px;
+      background: #fffdf7;
+      box-shadow: 0 8px 22px rgba(27, 42, 74, 0.08);
+      text-align: center;
+    }
+
+    .origin-dot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border: 6px solid var(--accent-soft);
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .origin-node strong {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .origin-node small {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .route-lanes {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      align-content: center;
+      gap: 13px;
+      padding: 24px 24px 24px 32px;
+    }
+
+    .route-lane {
+      position: relative;
+      display: grid;
+      grid-template-columns: 158px minmax(0, 1fr);
+      gap: 20px;
+      align-items: center;
+      min-height: 98px;
+      padding: 14px 15px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      background-color: rgba(251, 248, 241, 0.72);
+      overflow: hidden;
+      transition: opacity 220ms ease, transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease, filter 220ms ease;
+    }
+
+    .route-board.filtered .route-lane {
+      opacity: 0.22;
+      filter: saturate(0.35);
+      transform: scale(0.986);
+    }
+
+    .route-board.filtered .route-lane.active {
+      opacity: 1;
+      filter: none;
+      transform: none;
+      border-color: rgba(200, 146, 62, 0.46);
+      background-color: #fffdf7;
+      box-shadow: 0 16px 36px rgba(27, 42, 74, 0.12);
+    }
+
+    .route-hub {
+      min-width: 0;
+    }
+
+    .route-hub-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 7px;
+    }
+
+    .route-hub h2 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .route-hub p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .route-code {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .route-code.divination {
+      background: #f5e3df;
+      color: var(--cinnabar);
+    }
+
+    .route-code.fate {
+      background: #e8f0e8;
+      color: var(--pine);
+    }
+
+    .route-code.three {
+      background: #e7edf4;
+      color: #49617f;
+    }
+
+    .route-code.fengshui {
+      background: #efe7d6;
+      color: #7b6137;
+    }
+
+    .module-stops {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px 14px;
+      min-width: 0;
+      padding: 4px 0;
+    }
+
+    .module-node {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+      min-height: 104px;
+      padding: 15px 14px;
+      border: 2px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      text-decoration: none;
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .module-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
+      width: 20px;
+      height: 20px;
+      margin-bottom: 6px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .module-node:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 18px rgba(27, 42, 74, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .module-node strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    .module-node small {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .module-node.planned {
+      border-style: dashed;
+      border-color: var(--line);
+      background: #f4efe6;
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    .module-node.planned .module-step {
+      background: #d5cdbf;
+      color: var(--muted);
+    }
+
+    .map-note {
+      padding: 13px 15px;
+      border-left: 4px solid var(--cinnabar);
+      border-radius: 6px;
+      background: #f7ede8;
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 1260px) {
+      .map-workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .control-rail {
+        position: static;
+      }
+
+      .choice-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .map-area {
+        align-self: auto;
+        grid-template-rows: auto auto auto;
+      }
+
+      .route-board {
+        height: auto;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .map-shell {
+        padding-top: 20px;
+      }
+
+      .map-intro {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .map-intro .lede {
+        padding-left: 0;
+        border-left: 0;
+      }
+
+      .choice-list {
+        grid-template-columns: 1fr;
+      }
+
+      .map-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .module-stops {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .view-toggle {
+        width: 100%;
+      }
+
+      .view-toggle button {
+        flex: 1;
+      }
+
+      .route-board {
+        grid-template-columns: 1fr;
+      }
+
+      .route-origin {
+        justify-content: flex-start;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .origin-node {
+        flex-direction: row;
+        text-align: left;
+      }
+
+      .route-lanes {
+        padding: 16px 10px;
+      }
+
+      .route-lane {
+        grid-template-columns: 1fr;
+        gap: 13px;
+        padding-left: 0;
+      }
+
+      .module-node {
+        min-width: 0;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">术数教练 · 术数地图</p>
+      <h1>先判断问题，再进入路线。</h1>
+    </div>
+    <nav class="header-links">
+      <a class="text-link" href="../../index.html">学习目录</a>
+      <a class="text-link" href="../通用底层/index.html">通用底层</a>
+    </nav>
+  </header>
+
+  <main class="map-shell">
+    <section class="map-intro">
+      <div>
+        <p class="eyebrow">模块 00 · 选型路径</p>
+        <h1>不是先记术数，而是先定位你要解决的问题。</h1>
+      </div>
+      <p class="lede">左侧选择问题类型，右侧地图会只保留当前推荐路线。需要看全局时，切换右上角的“全景”。</p>
+    </section>
+
+    <div class="map-metrics" aria-label="术数地图统计">
+      <span class="metric"><strong>4</strong> 条主路线</span>
+      <span class="metric"><strong>8</strong> 个已开放模块</span>
+      <span class="metric"><strong>10+</strong> 个规划中术数</span>
+      <span class="metric">主线：问题 → 路线 → 模块</span>
+    </div>
+
+    <section class="map-workspace">
+      <aside class="control-rail">
+        <div class="control-card">
+          <div class="control-head">
+            <strong>选择问题类型</strong>
+            <span>01</span>
+          </div>
+          <div class="choice-list" role="tablist" aria-label="问题类型">
+            <button class="choice active" type="button" role="tab" aria-selected="true" data-route="divination">
+              <span class="choice-index">01</span>
+              <span class="choice-body"><strong>近期具体决策</strong><small>事情近、节奏快，想快速判断走向。</small></span>
+              <span class="choice-tag">推荐 · 占卜路线</span>
+            </button>
+            <button class="choice" type="button" role="tab" aria-selected="false" data-route="fate">
+              <span class="choice-index">02</span>
+              <span class="choice-body"><strong>长期人生结构</strong><small>理解事业、感情、财运的阶段趋势。</small></span>
+              <span class="choice-tag">推荐 · 命理路线</span>
+            </button>
+            <button class="choice" type="button" role="tab" aria-selected="false" data-route="fengshui">
+              <span class="choice-index">03</span>
+              <span class="choice-body"><strong>空间与形态</strong><small>关注住宅、环境、气色或择时。</small></span>
+              <span class="choice-tag">推荐 · 风水相术路线</span>
+            </button>
+            <button class="choice" type="button" role="tab" aria-selected="false" data-route="three">
+              <span class="choice-index">04</span>
+              <span class="choice-body"><strong>复杂局势与方位</strong><small>变量多，需要推演局势和方位。</small></span>
+              <span class="choice-tag">推荐 · 三式路线</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="result-card" aria-live="polite">
+          <div class="result-head">
+            <p class="result-kicker" id="resultKicker">推荐路线</p>
+            <h2 class="result-title" id="resultTitle">占卜路线</h2>
+            <p class="result-summary" id="resultSummary">先处理近期具体问题，建立快速起课和反馈闭环。</p>
+          </div>
+          <div class="result-body">
+            <div class="result-order" id="resultOrder">
+              <div class="order-step">
+                <span class="order-index">1</span>
+                <div><strong>先学一个轻量入口</strong><p>从起课最快、规则最少的术数开始。</p></div>
+              </div>
+              <div class="order-step">
+                <span class="order-index">2</span>
+                <div><strong>记录每一次判断</strong><p>把问题、信号、结果和复盘放在一起。</p></div>
+              </div>
+              <div class="order-step">
+                <span class="order-index">3</span>
+                <div><strong>再进入系统断法</strong><p>等通识稳定后，再升级到结构化方法。</p></div>
+              </div>
+            </div>
+            <a class="result-cta" id="resultCta" href="../小六壬/index.html">从小六壬开始</a>
+          </div>
+        </div>
+      </aside>
+
+      <section class="map-area">
+        <div class="map-toolbar">
+          <div class="map-toolbar-title">术数地图</div>
+          <div class="view-toggle" aria-label="地图视图">
+            <button class="active" type="button" data-mode="focus">聚焦</button>
+            <button type="button" data-mode="panorama">全景</button>
+          </div>
+        </div>
+
+        <div class="route-board filtered" id="routeBoard">
+          <div class="route-origin">
+            <div class="origin-node">
+              <span class="origin-dot">起</span>
+              <div><strong>你遇到什么问题？</strong><small>从这里进入选型</small></div>
+            </div>
+          </div>
+
+          <div class="route-lanes">
+            <div class="route-lane active" data-route-lane="divination">
+              <div class="route-hub">
+                <div class="route-hub-top">
+                  <span class="route-code divination">占</span>
+                  <h2>占卜路线</h2>
+                </div>
+                <p>近期具体问题，先练快速起课、读信号、记录反馈。</p>
+              </div>
+              <div class="module-stops">
+                <a class="module-node" href="../小六壬/index.html"><span class="module-step">01</span><strong>小六壬</strong><small>六宫起课，日常小事</small></a>
+                <a class="module-node" href="../梅花易数/index.html"><span class="module-step">02</span><strong>梅花易数</strong><small>八卦取象，体用生克</small></a>
+                <a class="module-node" href="../六爻纳甲/index.html"><span class="module-step">03</span><strong>六爻纳甲</strong><small>铜钱摇卦，六亲世应</small></a>
+                <a class="module-node" href="../六壬金口诀/index.html"><span class="module-step">04</span><strong>六壬金口诀</strong><small>干神将方，快速断来意</small></a>
+              </div>
+            </div>
+
+            <div class="route-lane" data-route-lane="fate">
+              <div class="route-hub">
+                <div class="route-hub-top">
+                  <span class="route-code fate">命</span>
+                  <h2>命理路线</h2>
+                </div>
+                <p>长期结构、阶段趋势和人生课题。</p>
+              </div>
+              <div class="module-stops">
+                <a class="module-node" href="../紫微斗数/index.html"><span class="module-step">05</span><strong>紫微斗数</strong><small>十二宫、星曜、四化</small></a>
+                <a class="module-node" href="../四柱八字/index.html"><span class="module-step">06</span><strong>四柱八字</strong><small>干支十神、大运流年</small></a>
+                <div class="module-node planned"><span class="module-step">07</span><strong>七政四余</strong><small>果老星宗等规划中</small></div>
+              </div>
+            </div>
+
+            <div class="route-lane" data-route-lane="fengshui">
+              <div class="route-hub">
+                <div class="route-hub-top">
+                  <span class="route-code fengshui">形</span>
+                  <h2>风水相术路线</h2>
+                </div>
+                <p>观察空间环境、形态气色与择时。</p>
+              </div>
+              <div class="module-stops">
+                <div class="module-node planned"><span class="module-step">08</span><strong>风水</strong><small>阳宅、阴宅、形势理气</small></div>
+                <div class="module-node planned"><span class="module-step">09</span><strong>相术</strong><small>面相、手相、气色</small></div>
+                <div class="module-node planned"><span class="module-step">10</span><strong>择日</strong><small>择吉、建除、天星</small></div>
+              </div>
+            </div>
+
+            <div class="route-lane" data-route-lane="three">
+              <div class="route-hub">
+                <div class="route-hub-top">
+                  <span class="route-code three">式</span>
+                  <h2>三式路线</h2>
+                </div>
+                <p>复杂局势、时机方位和宏观推演。</p>
+              </div>
+              <div class="module-stops">
+                <div class="module-node planned"><span class="module-step">11</span><strong>大六壬</strong><small>四课三传，人事决策</small></div>
+                <div class="module-node planned"><span class="module-step">12</span><strong>奇门遁甲</strong><small>九宫八门，时机方位</small></div>
+                <div class="module-node planned"><span class="module-step">13</span><strong>太乙神数</strong><small>宏观周期，资料较少</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-note">术数地图用于学习方法与路径导航，不替代医疗、法律、投资等专业判断。</div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const routeData = {
+      divination: {
+        kicker: "推荐路线",
+        title: "占卜路线",
+        summary: "先处理近期具体问题，建立快速起课、读信号和反馈闭环。",
+        ctaText: "从小六壬开始",
+        ctaHref: "../小六壬/index.html",
+        order: [
+          ["先学一个轻量入口", "从起课最快、规则最少的术数开始。"],
+          ["记录每一次判断", "把问题、信号、结果和复盘放在一起。"],
+          ["再进入系统断法", "等通识稳定后，再升级到结构化方法。"]
+        ]
+      },
+      fate: {
+        kicker: "推荐路线",
+        title: "命理路线",
+        summary: "把单次事件放回长期结构里看，先建立人生阶段和事业、感情、财运的观察框架。",
+        ctaText: "从紫微斗数开始",
+        ctaHref: "../紫微斗数/index.html",
+        order: [
+          ["先理解长期结构", "把年、月、日、时当作时间坐标，而不是孤立预测。"],
+          ["比较两个盘的结构", "紫微斗数看宫位格局，四柱八字看五行十神和大运。"],
+          ["再看流年和大运", "把阶段趋势与当前选择分开看待。"]
+        ]
+      },
+      fengshui: {
+        kicker: "推荐路线",
+        title: "风水相术路线",
+        summary: "从空间环境、形态气色和择时进入，适合观察型学习，暂不直接给出吉凶结论。",
+        ctaText: "路线规划中",
+        ctaHref: "#",
+        order: [
+          ["先建立空间观察", "把方位、采光、通风、动线当客观信息记录。"],
+          ["再理解形势与理气", "区分看得见的环境和看不见的方位关系。"],
+          ["最后才进入择日", "没有完整环境判断前，不单独做择吉操作。"]
+        ]
+      },
+      three: {
+        kicker: "推荐路线",
+        title: "三式路线",
+        summary: "适合复杂局势、时机方位和宏观推演，信息密度高，建议先具备占卜和命理通识。",
+        ctaText: "路线规划中",
+        ctaHref: "#",
+        order: [
+          ["先打通用底层", "阴阳、五行、干支、八卦必须能熟练调用。"],
+          ["先熟悉占卜与命理", "从已开放路线积累交叉验证经验。"],
+          ["再进入三式推演", "复杂局势需要更稳的盘面阅读和边界意识。"]
+        ]
+      },
+      all: {
+        kicker: "全景视图",
+        title: "四条路线同时展开",
+        summary: "先浏览路线结构，再回到左侧选择一个具体问题类型，地图会收敛到推荐路线。",
+        ctaText: "回到问题类型选择",
+        ctaHref: "#",
+        order: [
+          ["先看问题类型", "判断你当下更需要短期判断，还是长期结构。"],
+          ["再看学习顺序", "每条路线都标出适合先上手的模块。"],
+          ["最后进入一个模块", "不要一次铺开全部术数，从最小路径开始。"]
+        ]
+      }
+    };
+
+    const choices = [...document.querySelectorAll(".choice")];
+    const viewButtons = [...document.querySelectorAll(".view-toggle button")];
+    const board = document.getElementById("routeBoard");
+    const lanes = [...document.querySelectorAll(".route-lane")];
+    const resultKicker = document.getElementById("resultKicker");
+    const resultTitle = document.getElementById("resultTitle");
+    const resultSummary = document.getElementById("resultSummary");
+    const resultOrder = document.getElementById("resultOrder");
+    const resultCta = document.getElementById("resultCta");
+
+    let lastFocusRoute = "divination";
+    let currentView = "focus";
+
+    function renderResult(route) {
+      const data = routeData[route];
+      resultKicker.textContent = data.kicker;
+      resultTitle.textContent = data.title;
+      resultSummary.textContent = data.summary;
+      resultOrder.innerHTML = data.order.map((item, index) => `
+        <div class="order-step">
+          <span class="order-index">${index + 1}</span>
+          <div><strong>${item[0]}</strong><p>${item[1]}</p></div>
+        </div>
+      `).join("");
+      resultCta.textContent = data.ctaText;
+      resultCta.href = data.ctaHref;
+      resultCta.classList.toggle("muted", data.ctaHref === "#");
+    }
+
+    function syncChoices(route) {
+      choices.forEach((choice) => {
+        const isActive = choice.dataset.route === route;
+        choice.classList.toggle("active", isActive);
+        choice.setAttribute("aria-selected", isActive ? "true" : "false");
+      });
+    }
+
+    function syncMap(route) {
+      const filtered = route !== "all";
+      board.classList.toggle("filtered", filtered);
+      lanes.forEach((lane) => {
+        lane.classList.toggle("active", !filtered || lane.dataset.routeLane === route);
+      });
+    }
+
+    function syncViewButtons(view) {
+      currentView = view;
+      viewButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.mode === view);
+      });
+    }
+
+    function selectRoute(route) {
+      syncChoices(route);
+      syncMap(route);
+      renderResult(route);
+    }
+
+    function focusRoute(route) {
+      lastFocusRoute = route;
+      syncViewButtons("focus");
+      selectRoute(route);
+    }
+
+    function showPanorama() {
+      syncViewButtons("panorama");
+      selectRoute("all");
+    }
+
+    choices.forEach((choice) => {
+      choice.addEventListener("click", () => focusRoute(choice.dataset.route));
+    });
+
+    viewButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (button.dataset.mode === "panorama") {
+          showPanorama();
+        } else {
+          focusRoute(lastFocusRoute);
+        }
+      });
+    });
+
+    focusRoute("divination");
+  </script>
+</body>
+</html>

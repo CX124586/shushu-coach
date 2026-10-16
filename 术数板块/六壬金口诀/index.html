@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>六壬金口诀</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    body { padding: 28px clamp(20px, 5vw, 64px) 40px; }
+    .toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+    .download-button { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--accent); font-weight: 700; cursor: pointer; }
+    main { max-width: 860px; margin: 0 auto; }
+    table { width: 100%; border-collapse: collapse; margin: 18px 0; }
+    th, td { padding: 10px 12px; border: 1px solid var(--line); text-align: left; }
+    th { background: var(--accent-soft); }
+    @media print { .toolbar { display: none; } body { padding: 12mm; } }
+  </style>
+</head>
+<body>
+  <div class="toolbar"><button class="download-button" type="button" onclick="window.print()" title="打印或另存为 PDF">下载 PDF</button></div>
+  <main>
+    <p class="eyebrow">术数板块</p>
+    <h1>六壬金口诀</h1>
+    <p>六壬金口诀是大六壬的简化分支，相传由鬼谷子所创，经孙膑传承。它不排四课三传，直接以四位构建课式。</p>
+    <h2>四位一体</h2>
+    <table>
+      <thead><tr><th>四位</th><th>专称</th><th>象征</th></tr></thead>
+      <tbody>
+        <tr><td>人元</td><td>干</td><td>外在表现、最终结果</td></tr>
+        <tr><td>贵神</td><td>神</td><td>主导力量、贵人助力</td></tr>
+        <tr><td>月将</td><td>将</td><td>中间状态、发展过程</td></tr>
+        <tr><td>地分</td><td>方</td><td>根基、环境、方位</td></tr>
+      </tbody>
+    </table>
+    <h2>用爻选取简化规则</h2>
+    <ul><li>月将旺相优先；</li><li>其次贵神旺相；</li><li>再其次地分旺相；</li><li>都不旺时仍取月将本位。</li></ul>
+    <div class="scenario">
+      <h3>情景案例：午时来客问近期合作</h3>
+      <p>一位合作方在午时从南方来，问近期合作是否值得推进。先不急着断吉凶，只练习把情景转成四位。</p>
+      <ol>
+        <li>地分：从南方来，取午；</li>
+        <li>月将：按当前节气确定；</li>
+        <li>贵神：按日干和昼夜确定；</li>
+        <li>人元：以地分和日干推天干。</li>
+      </ol>
+      <h4>案例解析</h4>
+      <p>四位出来以后，不要急着断“成不成”。先看“干神将方”相邻两位的五行生克，再选旺相者作为用爻。用爻相当于这个课式的核心抓手，围绕它看上下支持还是压制，最后才落到近期合作是推进、等待还是调整条件。</p>
+    </div>
+    <h2>练习</h2>
+    <ul><li>先记四位顺序；</li><li>练习干神将方的五行生克；</li><li>用一个近期问题做用爻选取。</li></ul>
+  </main>
+</body>
+</html>

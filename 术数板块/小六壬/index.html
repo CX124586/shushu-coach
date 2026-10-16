@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>小六壬</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    body { padding: 28px clamp(20px, 5vw, 64px) 40px; }
+    .toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+    .download-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--accent);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .section-content { max-width: 860px; margin: 0 auto; }
+    table { width: 100%; border-collapse: collapse; margin: 18px 0; }
+    th, td { padding: 8px 10px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: var(--accent-soft); }
+    .practice-entry-grid { display: grid; gap: 12px; margin: 18px 0 26px; }
+    .practice-entry {
+      display: flex;
+      min-height: 154px;
+      padding: 18px 18px 16px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(27, 42, 74, 0.06);
+      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .practice-entry:hover,
+    .practice-entry:focus-visible {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 18px rgba(27, 42, 74, 0.12);
+    }
+    .entry-kicker { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: 0; }
+    .entry-title { margin-top: 6px; color: var(--ink); font-size: 21px; font-weight: 800; line-height: 1.35; letter-spacing: 0; }
+    .entry-desc { margin-top: 7px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .entry-action { margin-top: auto; padding-top: 14px; color: var(--accent); font-weight: 700; }
+    @media (min-width: 640px) { .practice-entry-grid { grid-template-columns: 1fr 1fr; } }
+    @media print { .toolbar, .carousel-controls, .scenario-toggle { display: none; } .scenario-answer { display: block !important; } body { padding: 12mm; } }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="download-button" type="button" onclick="window.print()" title="打印或另存为 PDF">下载 PDF</button>
+  </div>
+  <main class="section-content">
+    <p class="eyebrow">模块 02 · 快速占卜</p>
+    <h1>小六壬</h1>
+
+    <h2>学习目标</h2>
+    <p>让小白先建立小六壬最基础的三个能力：认得清六宫位置、会用时间或数字起课、读得懂第一层方向信号。</p>
+
+    <h2>核心内容</h2>
+    <ul>
+      <li>六宫顺序、掌诀位置和固定属性；</li>
+      <li>月日时起课与数字起课；</li>
+      <li>六宫的小白版含义；</li>
+      <li>小六壬适合做什么，不适合做什么。</li>
+    </ul>
+
+    <h2>先建立一条理解线</h2>
+    <div class="scenario">
+      <h3>小六壬不是“抽一个答案”</h3>
+      <p>小六壬是先固定六个宫位，再用日期、时辰或数字作为“指针”，把一件事落到某个宫位上看方向。</p>
+      <p>它适合先做快速筛选，不适合把复杂决定压缩成一个“准不准”的结论。学习重点是“会起课、会读信号、会记录反馈”。</p>
+    </div>
+    <div class="scenario">
+      <h3>邵一尘补充：六宫是当前状态，不是最终结论</h3>
+      <p>测到某个宫，先把它理解成“这件事现在像什么”，不要马上当成不可改变的最终结果。</p>
+      <p>例如留连是“停留、拖延、纠缠”，但不等于一定失败；后续还要结合时辰、五行和具体问题继续看变化。</p>
+    </div>
+
+    <h2>知识点清单</h2>
+    <h3>六宫顺序与掌诀位置</h3>
+    <p>六宫固定顺序为：大安、留连、速喜、赤口、小吉、空亡。</p>
+    <div class="mnemonic">
+      <strong>记忆口诀</strong>
+      <p>大安留连速喜，赤口小吉空亡。</p>
+    </div>
+    <table>
+      <thead>
+        <tr><th>指节</th><th>食指</th><th>中指</th><th>无名指</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>指尖</td><td>留连</td><td>速喜</td><td>赤口</td></tr>
+        <tr><td>指根</td><td>大安</td><td>空亡</td><td>小吉</td></tr>
+      </tbody>
+    </table>
+
+    <h3>六宫属性速查</h3>
+    <table>
+      <thead>
+        <tr><th>宫位</th><th>五行</th><th>方向</th><th>阴阳</th><th>数字</th><th>内外</th><th>性格关键词</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>大安</td><td>木</td><td>东/东南</td><td>阳</td><td>1、4、7</td><td>内</td><td>安稳、固执、可守成</td></tr>
+        <tr><td>留连</td><td>火</td><td>南</td><td>阴</td><td>2、5、8</td><td>内</td><td>慢、反复、需要等待</td></tr>
+        <tr><td>速喜</td><td>土</td><td>西</td><td>阳</td><td>3、6、9</td><td>外</td><td>快、主动、适合推进</td></tr>
+        <tr><td>赤口</td><td>金</td><td>西/西北</td><td>阴</td><td>1、4、7</td><td>外</td><td>口舌、阻力、先防冲突</td></tr>
+        <tr><td>小吉</td><td>水</td><td>北</td><td>阳</td><td>2、5、8</td><td>外</td><td>顺、有人帮、适合合作</td></tr>
+        <tr><td>空亡</td><td>土</td><td>东北</td><td>阴</td><td>3、6、9</td><td>内</td><td>落空、不定、先降低预期</td></tr>
+      </tbody>
+    </table>
+
+    <h3>六宫含义：小白版</h3>
+    <div class="scenario">
+      <h3>大安</h3>
+      <p>偏向稳定、可守成。适合按原计划推进，不适合临时冒险或远求。</p>
+    </div>
+    <div class="scenario">
+      <h3>留连</h3>
+      <p>偏向慢、反复、未定。事情可能需要再等一等，先别急着下决定。</p>
+    </div>
+    <div class="scenario">
+      <h3>速喜</h3>
+      <p>偏向快速、有消息、有喜意。适合尽快推进，但也要注意快中容易粗心。</p>
+    </div>
+    <div class="scenario">
+      <h3>赤口</h3>
+      <p>偏向口舌、冲突、阻力。先检查沟通、合同和关系，别硬碰硬。</p>
+    </div>
+    <div class="scenario">
+      <h3>小吉</h3>
+      <p>偏向顺利、有人帮助、合作可谈。适合主动联系、求助或推进合作。</p>
+    </div>
+    <div class="scenario">
+      <h3>空亡</h3>
+      <p>偏向落空、变化、难以抓住。先降低预期，把资源和时间留给更确定的事。</p>
+    </div>
+
+    <h3>起课方式</h3>
+    <h4>月日时起课</h4>
+    <p>先确定农历月、日、时辰。从大安起月，数到月；再在月落宫起日，数到日；最后在日落宫起时辰，落到哪里就是本课宫位。</p>
+    <div class="mnemonic">
+      <strong>示例</strong>
+      <p>三月初五辰时：大安起日，初五落小吉；从小吉起辰时，辰时落速喜。</p>
+    </div>
+    <h4>数字起课</h4>
+    <p>报一个数，直接从大安数该数；报多个数时，先求和，再按总和从大安起数。若继续看时辰，就在落宫上接着起时辰。</p>
+    <p>练习时先只用月日时或一位数字，避免一次加太多变量。</p>
+
+    <h2>使用边界</h2>
+    <ul>
+      <li>适合做近期小事的快速方向判断；</li>
+      <li>不适合替代合同、医疗、投资、法律等专业判断；</li>
+      <li>同一问题不要反复问到出现自己想要的答案。</li>
+    </ul>
+
+    <h2>情景案例</h2>
+    <section class="scenario-carousel" id="scenario-carousel" aria-label="小六壬情景案例">
+      <article class="scenario-card">
+        <h3>1. 周末项目要不要接</h3>
+        <p>周五晚上，朋友问你要不要接一个短期项目。你没有足够时间调研，只想先获得一个方向信号。</p>
+        <h4>怎么练</h4>
+        <p>先用月日时起课，把结果落到一个宫位；再只看第一层信号：这件事更适合推进，还是先缓一缓。</p>
+        <h4>结论提示</h4>
+        <p>小六壬只给方向，不替代你对时间、精力和合同条款的判断。</p>
+      </article>
+      <article class="scenario-card">
+        <h3>2. 钥匙找不到了</h3>
+        <p>你出门前找不到钥匙，想知道应该先搜哪里，还是先安静回想。</p>
+        <h4>怎么练</h4>
+        <p>用当前时间起课，不追求“一定在哪个抽屉”，只把结果理解成“偏近处、偏反复寻找、偏需要请人帮忙”等方向。</p>
+        <h4>结论提示</h4>
+        <p>失物判断最多作为搜索顺序的提示，不能替代实际检查。</p>
+      </article>
+      <article class="scenario-card">
+        <h3>3. 临时合作催得急</h3>
+        <p>一个合作方催你当天回复，你感觉信息不足，但又怕错过机会。</p>
+        <h4>怎么练</h4>
+        <p>让数字起课先给一个快慢或顺阻信号，再决定是先要材料、先找中间人，还是先拒绝。</p>
+        <h4>结论提示</h4>
+        <p>如果落到赤口，重点先检查沟通和条款；如果落到小吉，可以优先推进。</p>
+      </article>
+    </section>
+    <div class="carousel-controls">
+      <button type="button" id="scenario-prev" aria-label="上一个情景">‹</button>
+      <button type="button" id="scenario-next" aria-label="下一个情景">›</button>
+    </div>
+
+    <h2>练习</h2>
+    <ul>
+      <li>默写六宫顺序和掌诀位置；</li>
+      <li>用今天的农历月日时完成一次起课；</li>
+      <li>报一个一位数完成一次数字起课；</li>
+      <li>写下“这个宫位的第一层方向是什么”，不要先求吉凶。</li>
+    </ul>
+    <div class="practice-entry-grid" aria-label="练习入口">
+      <a class="practice-entry" href="练习.html">
+        <span class="entry-kicker">自动化练习</span>
+        <span class="entry-title">进入自动化练习</span>
+        <span class="entry-desc">小六壬练习模块待接入，当前先完成基础内容学习。</span>
+        <span class="entry-action">开始练习 →</span>
+      </a>
+      <a class="practice-entry" href="题库预览.html">
+        <span class="entry-kicker">题库总览</span>
+        <span class="entry-title">题库预览</span>
+        <span class="entry-desc">按题型和知识点筛选，查看小六壬完整题库。</span>
+        <span class="entry-action">查看题库 →</span>
+      </a>
+    </div>
+
+    <h2>学习技巧</h2>
+    <ul>
+      <li>先在手上画出六宫位置，不要一上来背所有属性；</li>
+      <li>把六宫只记成三个方向：稳、快、阻，再逐步补细节；</li>
+      <li>每次起课后记录实际结果，用反馈修正自己的理解；</li>
+      <li>每天只练一种起课法，熟练后再叠加时辰。</li>
+    </ul>
+
+    <h2>资料来源与边界</h2>
+    <ul>
+      <li>本页核心内容根据本地外部资料《江氏小六壬真传秘诀【赠】.pdf》做学习化归纳；</li>
+      <li>“六宫是当前状态”这一补充理解参考《邵一尘-小六壬解惑（678页）.pdf》，因原文有缺字，只采用可确认的通用原则；</li>
+      <li>暂不纳入六亲、六神、五星、灾煞癔病、疾病丧亡、开光化解、择吉、男女孕产等进阶或敏感内容。</li>
+    </ul>
+  </main>
+
+  <script>
+    document.querySelectorAll(".scenario-card").forEach((card) => {
+      const title = card.querySelector("h3");
+      const question = card.querySelector("p");
+      if (!title || !question) return;
+
+      const rest = [...card.children].filter((el) => el !== title && el !== question);
+      const button = document.createElement("button");
+      const answer = document.createElement("div");
+
+      button.type = "button";
+      button.className = "scenario-toggle";
+      button.textContent = "查看解析";
+
+      answer.className = "scenario-answer";
+      answer.hidden = true;
+      rest.forEach((el) => answer.appendChild(el));
+
+      card.appendChild(button);
+      card.appendChild(answer);
+
+      button.addEventListener("click", () => {
+        const willOpen = answer.hidden;
+        answer.hidden = !willOpen;
+        button.textContent = willOpen ? "收起解析" : "查看解析";
+      });
+    });
+
+    const carousel = document.getElementById("scenario-carousel");
+    const prev = document.getElementById("scenario-prev");
+    const next = document.getElementById("scenario-next");
+    prev.addEventListener("click", () => carousel.scrollBy({ left: -Math.min(420, carousel.clientWidth * 0.8), behavior: "smooth" }));
+    next.addEventListener("click", () => carousel.scrollBy({ left: Math.min(420, carousel.clientWidth * 0.8), behavior: "smooth" }));
+  </script>
+</body>
+</html>

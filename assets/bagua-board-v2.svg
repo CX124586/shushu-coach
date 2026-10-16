@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" fill="none">
+  <defs>
+    <radialGradient id="v2-halo" cx="50%" cy="42%" r="65%">
+      <stop offset="0" stop-color="#FFF8E8" stop-opacity="0.94"/>
+      <stop offset="0.22" stop-color="#F3D89D" stop-opacity="0.9"/>
+      <stop offset="0.52" stop-color="#B77A31" stop-opacity="0.88"/>
+      <stop offset="0.78" stop-color="#4A2B12" stop-opacity="0.88"/>
+      <stop offset="1" stop-color="#20160D" stop-opacity="0.94"/>
+    </radialGradient>
+
+    <radialGradient id="v2-rim" cx="32%" cy="24%" r="82%">
+      <stop offset="0" stop-color="#FFF7D8"/>
+      <stop offset="0.18" stop-color="#EBC477"/>
+      <stop offset="0.45" stop-color="#A96A28"/>
+      <stop offset="0.78" stop-color="#5A3213"/>
+      <stop offset="1" stop-color="#241407"/>
+    </radialGradient>
+
+    <radialGradient id="v2-face" cx="38%" cy="28%" r="80%">
+      <stop offset="0" stop-color="#F6E6C2"/>
+      <stop offset="0.28" stop-color="#D8B476"/>
+      <stop offset="0.62" stop-color="#97612A"/>
+      <stop offset="1" stop-color="#3C240F"/>
+    </radialGradient>
+
+    <radialGradient id="v2-inner" cx="44%" cy="34%" r="76%">
+      <stop offset="0" stop-color="#FFF2CC"/>
+      <stop offset="0.25" stop-color="#D9A850"/>
+      <stop offset="0.62" stop-color="#75431A"/>
+      <stop offset="1" stop-color="#291708"/>
+    </radialGradient>
+
+    <linearGradient id="v2-bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFF2C8"/>
+      <stop offset="0.22" stop-color="#E8BD67"/>
+      <stop offset="0.58" stop-color="#A56A28"/>
+      <stop offset="1" stop-color="#3B230E"/>
+    </linearGradient>
+
+    <radialGradient id="v2-gold" cx="32%" cy="24%" r="82%">
+      <stop offset="0" stop-color="#FFF8D7"/>
+      <stop offset="0.28" stop-color="#E4B65A"/>
+      <stop offset="0.7" stop-color="#8D5420"/>
+      <stop offset="1" stop-color="#2B1808"/>
+    </radialGradient>
+
+    <radialGradient id="v2-ink" cx="34%" cy="26%" r="82%">
+      <stop offset="0" stop-color="#5E7893"/>
+      <stop offset="0.26" stop-color="#2B425C"/>
+      <stop offset="0.68" stop-color="#111D2D"/>
+      <stop offset="1" stop-color="#050A10"/>
+    </radialGradient>
+
+    <radialGradient id="v2-gold-eye" cx="34%" cy="30%" r="72%">
+      <stop offset="0" stop-color="#FFF8D8"/>
+      <stop offset="0.5" stop-color="#E7B95D"/>
+      <stop offset="1" stop-color="#4C280A"/>
+    </radialGradient>
+
+    <radialGradient id="v2-ink-eye" cx="34%" cy="30%" r="72%">
+      <stop offset="0" stop-color="#607B96"/>
+      <stop offset="0.45" stop-color="#263F58"/>
+      <stop offset="1" stop-color="#050B13"/>
+    </radialGradient>
+
+    <filter id="v2-shadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="28" stdDeviation="24" flood-color="#130B04" flood-opacity="0.42"/>
+    </filter>
+
+    <filter id="v2-bar-shadow" x="-45%" y="-45%" width="190%" height="190%">
+      <feDropShadow dx="0" dy="9" stdDeviation="8" flood-color="#100A05" flood-opacity="0.46"/>
+    </filter>
+
+    <filter id="v2-gloss" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#FFF1B5" flood-opacity="0.42"/>
+    </filter>
+
+    <g id="v2-solid">
+      <rect x="-42" y="-10" width="84" height="20" rx="4" fill="url(#v2-bar)" filter="url(#v2-bar-shadow)"/>
+      <rect x="-37" y="-7" width="74" height="4" rx="2" fill="#FFF8DB" opacity="0.72"/>
+    </g>
+
+    <g id="v2-broken">
+      <rect x="-42" y="-10" width="34" height="20" rx="4" fill="url(#v2-bar)" filter="url(#v2-bar-shadow)"/>
+      <rect x="8" y="-10" width="34" height="20" rx="4" fill="url(#v2-bar)" filter="url(#v2-bar-shadow)"/>
+      <rect x="-37" y="-7" width="29" height="4" rx="2" fill="#FFF8DB" opacity="0.72"/>
+      <rect x="13" y="-7" width="29" height="4" rx="2" fill="#FFF8DB" opacity="0.72"/>
+    </g>
+
+    <g id="v2-qian">
+      <use href="#v2-solid" transform="translate(0 -34)"/>
+      <use href="#v2-solid"/>
+      <use href="#v2-solid" transform="translate(0 34)"/>
+    </g>
+
+    <g id="v2-dui">
+      <use href="#v2-broken" transform="translate(0 -34)"/>
+      <use href="#v2-solid"/>
+      <use href="#v2-solid" transform="translate(0 34)"/>
+    </g>
+
+    <g id="v2-li">
+      <use href="#v2-solid" transform="translate(0 -34)"/>
+      <use href="#v2-broken"/>
+      <use href="#v2-solid" transform="translate(0 34)"/>
+    </g>
+
+    <g id="v2-zhen">
+      <use href="#v2-broken" transform="translate(0 -34)"/>
+      <use href="#v2-broken"/>
+      <use href="#v2-solid" transform="translate(0 34)"/>
+    </g>
+
+    <g id="v2-kun">
+      <use href="#v2-broken" transform="translate(0 -34)"/>
+      <use href="#v2-broken"/>
+      <use href="#v2-broken" transform="translate(0 34)"/>
+    </g>
+
+    <g id="v2-gen">
+      <use href="#v2-solid" transform="translate(0 -34)"/>
+      <use href="#v2-broken"/>
+      <use href="#v2-broken" transform="translate(0 34)"/>
+    </g>
+
+    <g id="v2-kan">
+      <use href="#v2-broken" transform="translate(0 -34)"/>
+      <use href="#v2-solid"/>
+      <use href="#v2-broken" transform="translate(0 34)"/>
+    </g>
+
+    <g id="v2-xun">
+      <use href="#v2-solid" transform="translate(0 -34)"/>
+      <use href="#v2-solid"/>
+      <use href="#v2-broken" transform="translate(0 34)"/>
+    </g>
+  </defs>
+
+  <circle cx="600" cy="600" r="522" fill="url(#v2-halo)" filter="url(#v2-shadow)"/>
+  <circle cx="600" cy="600" r="505" fill="url(#v2-rim)"/>
+  <circle cx="600" cy="600" r="505" stroke="#FFF0BE" stroke-opacity="0.52" stroke-width="3"/>
+  <circle cx="600" cy="600" r="458" fill="url(#v2-face)"/>
+  <circle cx="600" cy="600" r="458" stroke="#FFF2C8" stroke-opacity="0.35" stroke-width="2"/>
+
+  <circle cx="600" cy="600" r="430" fill="none" stroke="#FCE6AE" stroke-opacity="0.52" stroke-width="2" stroke-dasharray="3 31"/>
+  <circle cx="600" cy="600" r="414" fill="none" stroke="#3D210D" stroke-opacity="0.52" stroke-width="22"/>
+  <circle cx="600" cy="600" r="394" fill="url(#v2-inner)"/>
+  <circle cx="600" cy="600" r="394" stroke="#FFF1C5" stroke-opacity="0.42" stroke-width="2"/>
+
+  <g transform="translate(600 600)" opacity="0.96">
+    <g transform="rotate(0) translate(0 -315)"><use href="#v2-qian"/></g>
+    <g transform="rotate(45) translate(0 -315)"><use href="#v2-dui"/></g>
+    <g transform="rotate(90) translate(0 -315)"><use href="#v2-li"/></g>
+    <g transform="rotate(135) translate(0 -315)"><use href="#v2-zhen"/></g>
+    <g transform="rotate(180) translate(0 -315)"><use href="#v2-kun"/></g>
+    <g transform="rotate(225) translate(0 -315)"><use href="#v2-gen"/></g>
+    <g transform="rotate(270) translate(0 -315)"><use href="#v2-kan"/></g>
+    <g transform="rotate(315) translate(0 -315)"><use href="#v2-xun"/></g>
+  </g>
+
+  <circle cx="600" cy="600" r="222" fill="url(#v2-inner)"/>
+  <circle cx="600" cy="600" r="222" stroke="#F9DEA0" stroke-opacity="0.58" stroke-width="5"/>
+  <circle cx="600" cy="600" r="198" fill="url(#v2-ink)"/>
+  <path d="M600 402 A198 198 0 0 1 798 600 A99 99 0 0 0 600 501 A99 99 0 0 1 402 600 A198 198 0 0 0 600 798 A99 99 0 0 1 600 699 A99 99 0 0 0 600 501 Z" fill="url(#v2-gold)"/>
+  <circle cx="600" cy="501" r="34" fill="url(#v2-ink-eye)"/>
+  <circle cx="600" cy="699" r="34" fill="url(#v2-gold-eye)"/>
+  <circle cx="600" cy="600" r="198" stroke="#FFEDBD" stroke-opacity="0.35" stroke-width="3"/>
+  <circle cx="558" cy="480" r="90" fill="#FFF8DE" opacity="0.055"/>
+</svg>

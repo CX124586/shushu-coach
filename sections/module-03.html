@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>03 系统占卜</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { padding: 28px clamp(20px, 5vw, 64px) 40px; }
+    .toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+    .download-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--accent);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .section-content { max-width: 860px; margin: 0 auto; }
+    @media print { .toolbar { display: none; } body { padding: 12mm; } }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="download-button" type="button" onclick="window.print()" title="打印或另存为 PDF">下载 PDF</button>
+  </div>
+  <main class="section-content">
+    <p class="eyebrow">模块 03 · 开放</p>
+    <h1>系统占卜</h1>
+    <h2>学习目标</h2>
+    <p>以六爻纳甲为核心，学会较完整的起卦、装卦、六亲六神、世应动变和基础断事流程。</p>
+    <h2>六爻纳甲是什么</h2>
+    <p>六爻纳甲又称火珠林法，起源于汉代京房，将八卦理论与干支五行结合。它用三枚铜钱摇卦，再通过纳甲、世应、六亲、六兽等规则装卦推演。</p>
+    <div class="flow" aria-label="六爻断卦流程">
+      <div class="flow-step">起卦</div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">定卦宫</div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">世应</div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">六亲六神</div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">动变</div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">用神</div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">旺衰</div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">结论</div>
+    </div>
+    <h2>核心内容</h2>
+    <ul>
+      <li>手摇、数字或指定卦象起卦；</li>
+      <li>京房八宫纳甲与卦宫定位；</li>
+      <li>六亲、六神、世应、动爻、变爻；</li>
+      <li>用神选择和四时旺衰；</li>
+      <li>把问题从“吉凶”拆成“人事关系、阻力、资源、应期”。</li>
+    </ul>
+    <h2>知识点清单</h2>
+    <h3>起卦与装卦</h3>
+    <ul>
+      <li>用三枚钱摇卦时，先固定阴阳面规则；</li>
+      <li>根据本卦确定卦宫，再排六亲和世应；</li>
+      <li>动爻会生成变卦，变爻要看回头生克和变出之爻。</li>
+    </ul>
+    <h3>断卦要素</h3>
+    <ul>
+      <li>用神代表所问之事；</li>
+      <li>月破、旬空影响爻的旺衰；</li>
+      <li>动变生克决定事件变化；</li>
+      <li>六兽作为附加判断信息。</li>
+    </ul>
+    <h3>六亲与用神</h3>
+    <ul>
+      <li>六亲包括父母、兄弟、子孙、妻财、官鬼；</li>
+      <li>用神不是固定的，要先根据所问之事选择；</li>
+      <li>同样一个爻，在不同问题里可能代表不同人物或资源。</li>
+    </ul>
+    <h3>旺衰与应期</h3>
+    <ul>
+      <li>月建、日辰会影响爻的旺衰；</li>
+      <li>旬空、月破、墓库等状态需要逐项记录；</li>
+      <li>应期先学大致方向，不要求一开始就断具体日期。</li>
+    </ul>
+    <h2>适合谁</h2>
+    <p>已经完成快速占卜模块，想从“感觉型判断”进入“结构型判断”的用户。</p>
+    <h2>练习</h2>
+    <ul>
+      <li>用“是否接受一个短期合作”起一卦；</li>
+      <li>标出世应、动爻和用神；</li>
+      <li>写出一句包含阻力、资源和下一步观察点的判断。</li>
+    </ul>
+    <h2>学习技巧</h2>
+    <ul>
+      <li>先使用一个可靠排盘工具核对，不要求一开始手排全部；</li>
+      <li>每次只问一个问题，先定用神，再看其他关系；</li>
+      <li>固定一套断卦清单：起卦、定宫、世应、六亲、动变、用神、旺衰、结论；</li>
+      <li>建立案例库，记录预测、反馈和判断偏差；</li>
+      <li>不要同时看太多爻，先找出最能回答当前问题的主爻。</li>
+    </ul>
+  </main>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>紫微斗数</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    body { padding: 28px clamp(20px, 5vw, 64px) 40px; }
+    .toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+    .download-button { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--accent); font-weight: 700; cursor: pointer; }
+    main { max-width: 860px; margin: 0 auto; }
+    table { width: 100%; border-collapse: collapse; margin: 18px 0; }
+    th, td { padding: 10px 12px; border: 1px solid var(--line); text-align: left; }
+    th { background: var(--accent-soft); }
+    @media print { .toolbar { display: none; } body { padding: 12mm; } }
+  </style>
+</head>
+<body>
+  <div class="toolbar"><button class="download-button" type="button" onclick="window.print()" title="打印或另存为 PDF">下载 PDF</button></div>
+  <main>
+    <p class="eyebrow">术数板块</p>
+    <h1>紫微斗数</h1>
+    <p>紫微斗数以十二宫、星曜和四化为主体，适合看人生格局和阶段性趋势。</p>
+    <h2>主要看点</h2>
+    <table>
+      <thead><tr><th>维度</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td>十二宫</td><td>命宫、兄弟、夫妻、子女、财帛、疾厄、迁移、交友、事业、田宅、福德、父母</td></tr>
+        <tr><td>四化</td><td>化禄、化权、化科、化忌</td></tr>
+        <tr><td>三方四正</td><td>本宫、对宫、三合宫</td></tr>
+        <tr><td>常见流派</td><td>三合派、飞星派、钦天派</td></tr>
+      </tbody>
+    </table>
+    <h2>练习</h2>
+    <ul><li>先熟悉十二宫名称；</li><li>看懂一张命盘的星曜分布；</li><li>区分三合派与飞星派的判断重点。</li></ul>
+  </main>
+</body>
+</html>

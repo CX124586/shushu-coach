@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>术数教练 · 介绍</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      background: var(--bg);
+    }
+
+    .intro-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 28px clamp(20px, 5vw, 64px);
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .intro-header h1 {
+      margin-bottom: 0;
+    }
+
+    .intro-stage {
+      position: relative;
+      min-height: 640px;
+      overflow: hidden;
+      isolation: isolate;
+      background: #101d2f;
+    }
+
+    .intro-gradient {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 900ms ease;
+    }
+
+    .intro-gradient[data-gradient="0"] {
+      background: linear-gradient(135deg, #101d2f 0%, #183f38 48%, #b98a3c 100%);
+    }
+
+    .intro-gradient[data-gradient="1"] {
+      background: linear-gradient(135deg, #152b42 0%, #8f4f2e 48%, #d8ad62 100%);
+    }
+
+    .intro-gradient[data-gradient="2"] {
+      background: linear-gradient(135deg, #132b2a 0%, #2d5a3e 52%, #d8ad62 100%);
+    }
+
+    .intro-gradient[data-gradient="3"] {
+      background: linear-gradient(135deg, #151e38 0%, #1f4a55 48%, #b38b4c 100%);
+    }
+
+    .intro-gradient.active {
+      opacity: 1;
+    }
+
+    .intro-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      padding: 64px clamp(20px, 8vw, 96px);
+      color: #fff;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 700ms ease, transform 700ms ease;
+      pointer-events: none;
+    }
+
+    .intro-slide.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .intro-slide-inner {
+      width: 100%;
+      max-width: 920px;
+    }
+
+    .intro-kicker {
+      margin: 0 0 12px;
+      color: #f3dfb8;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .intro-slide h2 {
+      max-width: 860px;
+      margin: 0;
+      color: #fff;
+      font-size: clamp(34px, 6vw, 64px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .intro-copy {
+      max-width: 760px;
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: clamp(17px, 2.2vw, 21px);
+      line-height: 1.7;
+    }
+
+    .intro-table-wrap {
+      width: 100%;
+      margin-top: 22px;
+      overflow-x: auto;
+    }
+
+    .intro-table {
+      width: 100%;
+      min-width: 560px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .intro-table th,
+    .intro-table td {
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.92);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .intro-table th {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .intro-controls {
+      position: absolute;
+      right: clamp(20px, 8vw, 96px);
+      bottom: 28px;
+      left: clamp(20px, 8vw, 96px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .intro-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .intro-dots button {
+      width: 10px;
+      height: 10px;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .intro-dots button.active {
+      background: #fff;
+    }
+
+    .intro-hint {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 13px;
+      letter-spacing: 0;
+    }
+
+    .intro-entry {
+      max-width: 920px;
+      margin: 28px auto 0;
+      padding: 22px clamp(20px, 5vw, 64px);
+    }
+
+    .intro-entry-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 8px 22px rgba(27, 42, 74, 0.08);
+    }
+
+    .intro-entry-copy {
+      min-width: 0;
+    }
+
+    .intro-entry-copy h2 {
+      margin-bottom: 4px;
+      color: var(--ink);
+    }
+
+    .intro-entry-copy p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .primary-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      padding: 11px 16px;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(200, 146, 62, 0.2);
+    }
+
+    .primary-link:hover {
+      border-color: var(--ink);
+      background: var(--ink);
+    }
+
+    .intro-section {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 42px clamp(20px, 5vw, 64px) 48px;
+    }
+
+    .intro-section h2 {
+      color: var(--ink);
+    }
+
+    .intro-section-lead {
+      max-width: 760px;
+      margin-bottom: 22px;
+      color: var(--muted);
+    }
+
+    .intro-path-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .intro-path-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+    }
+
+    .intro-path-card strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--accent);
+      font-size: 15px;
+    }
+
+    .intro-path-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .intro-footer {
+      padding: 22px clamp(20px, 5vw, 64px) 34px;
+      border-top: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 720px) {
+      .intro-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .intro-stage {
+        min-height: 760px;
+      }
+
+      .intro-slide {
+        padding-top: 48px;
+        padding-bottom: 96px;
+      }
+
+      .intro-controls {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .intro-entry-panel {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .primary-link {
+        width: 100%;
+      }
+
+      .intro-path-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="intro-header">
+    <div>
+      <p class="eyebrow">术数教练 · 介绍</p>
+      <h1>从看懂盘，到会选术数</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro-stage" aria-label="术数教练介绍">
+      <div class="intro-gradient active" data-gradient="0"></div>
+      <div class="intro-gradient" data-gradient="1"></div>
+      <div class="intro-gradient" data-gradient="2"></div>
+      <div class="intro-gradient" data-gradient="3"></div>
+
+      <div class="intro-slide active" data-slide="0">
+        <div class="intro-slide-inner">
+          <p class="intro-kicker">产品定位</p>
+          <h2>先建立通识，再选择适合自己的术数。</h2>
+          <p class="intro-copy">术数教练不替你做决定，而是把不同术数怎样看同一件事拆开，帮你看懂盘、选工具、建立自己的判断方法。</p>
+        </div>
+      </div>
+
+      <div class="intro-slide" data-slide="1">
+        <div class="intro-slide-inner">
+          <p class="intro-kicker">第一组 · 短周期决策</p>
+          <h2>小六壬、六壬金口诀、梅花易数、六爻。</h2>
+          <p class="intro-copy">适合快速判断近期选择，把“该不该做”从模糊感觉变成多层可以对照的信号。</p>
+          <div class="intro-table-wrap">
+            <table class="intro-table">
+              <thead>
+                <tr><th>术数</th><th>它更适合回答什么</th><th>本案例里主要看什么</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>小六壬</td><td>快速方向感、短期事项</td><td>起步的吉凶倾向，先看这件事要不要继续深看</td></tr>
+                <tr><td>六壬金口诀</td><td>快速断来意、短期结构化判断</td><td>地分、月将、贵神、人元四层关系</td></tr>
+                <tr><td>梅花易数</td><td>当下状态、象意和变化</td><td>合作双方关系、机会像什么、关键变数</td></tr>
+                <tr><td>六爻</td><td>具体人事、利益、阻力和结果</td><td>世应关系、动变、财官、兄弟等六亲信息</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="intro-slide" data-slide="2">
+        <div class="intro-slide-inner">
+          <p class="intro-kicker">第二组 · 事业、感情、财运</p>
+          <h2>六爻、紫微斗数、四柱八字。</h2>
+          <p class="intro-copy">适合把眼前事件和长期人生结构放在一起看，分清哪些问题是近期变化，哪些是阶段趋势。</p>
+          <div class="intro-table-wrap">
+            <table class="intro-table">
+              <thead>
+                <tr><th>术数</th><th>主要层级</th><th>本案例里重点看什么</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>六爻</td><td>具体事件、近期得失</td><td>当前选择、阻力、合作与收益信号</td></tr>
+                <tr><td>紫微斗数</td><td>十二宫、阶段趋势</td><td>事业宫、财帛宫、四化和三方四正</td></tr>
+                <tr><td>四柱八字</td><td>人生结构、大运流年</td><td>当前大运、流年与原局的组合</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="intro-slide" data-slide="3">
+        <div class="intro-slide-inner">
+          <p class="intro-kicker">起点 · 01 通用底层</p>
+          <h2>所有术数都绕不开的共同语言。</h2>
+          <p class="intro-copy">阴阳、五行、天干地支、八卦、旺衰与体用。基础先通，后面再学具体术数才不是只背名词。</p>
+        </div>
+      </div>
+
+      <div class="intro-controls">
+        <div class="intro-dots" aria-label="切换介绍内容">
+          <button type="button" class="active" aria-label="第 1 页"></button>
+          <button type="button" aria-label="第 2 页"></button>
+          <button type="button" aria-label="第 3 页"></button>
+          <button type="button" aria-label="第 4 页"></button>
+        </div>
+        <span class="intro-hint">介绍内容自动切换</span>
+      </div>
+    </section>
+
+    <section class="intro-entry">
+      <div class="intro-entry-panel">
+        <div class="intro-entry-copy">
+          <h2>进入学习目录</h2>
+          <p>从 00 术数地图开始，按开放模块逐步学习。</p>
+        </div>
+        <a class="primary-link" href="index.html">进入学习目录 →</a>
+      </div>
+    </section>
+
+    <section class="intro-section">
+      <p class="eyebrow">学习路径</p>
+      <h2>先会选，再深学</h2>
+      <p class="intro-section-lead">不要求你一次学会所有术数。先建立共同语言，再按问题类型进入对应分组，最后做交叉验证。</p>
+      <div class="intro-path-grid">
+        <div class="intro-path-card">
+          <strong>01 通用底层</strong>
+          <p>先掌握阴阳五行、天干地支、八卦等所有术数都需要的底层语言。</p>
+        </div>
+        <div class="intro-path-card">
+          <strong>02 问题分组</strong>
+          <p>第一组处理近期决策，第二组处理事业、感情、财运等中长期课题。</p>
+        </div>
+        <div class="intro-path-card">
+          <strong>03 交叉验证</strong>
+          <p>学会看懂不同术数盘，判断一个问题更适合用哪种工具。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="intro-footer">
+    本内容用于传统文化学习方法演示，不承诺准确率，也不替代医疗、法律、投资等专业建议。
+  </footer>
+
+  <script>
+    const slides = [...document.querySelectorAll(".intro-slide")];
+    const gradients = [...document.querySelectorAll(".intro-gradient")];
+    const dots = [...document.querySelectorAll(".intro-dots button")];
+    let current = 0;
+    let timer = null;
+
+    function show(index) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === current));
+      gradients.forEach((gradient, i) => gradient.classList.toggle("active", i === current));
+      dots.forEach((dot, i) => dot.classList.toggle("active", i === current));
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        show(index);
+        restart();
+      });
+    });
+
+    function restart() {
+      window.clearInterval(timer);
+      timer = window.setInterval(() => show(current + 1), 5200);
+    }
+
+    restart();
+  </script>
+</body>
+</html>

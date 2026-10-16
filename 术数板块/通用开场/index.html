@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>通用开场</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    body { padding: 28px clamp(20px, 5vw, 64px) 40px; }
+    .toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+    .download-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .section-content { max-width: 860px; margin: 0 auto; }
+    @media print {
+      .toolbar { display: none; }
+      body { padding: 12mm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="download-button" type="button" onclick="window.print()" title="打印或另存为 PDF">下载 PDF</button>
+  </div>
+  <main class="section-content">
+    <p class="eyebrow">术数教练 · 第一版试读</p>
+    <h1>通用开场</h1>
+    <blockquote>帮你看懂盘，选择适合自己的术数，不替你决定结果。</blockquote>
+    <p>很多人学术数，卡住的不是“不够努力”，而是不知道：</p>
+    <ul>
+      <li>现在该学哪一门；</li>
+      <li>为什么同一件事，不同术数说法不一样；</li>
+      <li>怎样判断哪个结果值得参考。</li>
+    </ul>
+    <p>这门课不替你算命，只带你把“不同术数怎样看同一件事”拆开，建立一套可以自己反复使用的判断方法。</p>
+    <p class="disclaimer">本内容用于传统文化学习方法演示，不承诺准确率，也不替代医疗、法律、投资等专业建议。</p>
+  </main>
+</body>
+</html>

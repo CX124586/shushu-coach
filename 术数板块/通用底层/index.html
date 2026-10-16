@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>01 通用底层</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    body { padding: 28px clamp(20px, 5vw, 64px) 40px; }
+    .toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+    .download-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--accent);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .practice-entry-grid {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 26px;
+    }
+    .practice-entry {
+      display: flex;
+      min-height: 154px;
+      padding: 18px 18px 16px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(27, 42, 74, 0.06);
+      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .practice-entry:hover,
+    .practice-entry:focus-visible {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 18px rgba(27, 42, 74, 0.12);
+    }
+    .entry-kicker {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .entry-title {
+      margin-top: 6px;
+      color: var(--ink);
+      font-size: 21px;
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+    .entry-desc {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .entry-action {
+      margin-top: auto;
+      padding-top: 14px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    @media (min-width: 640px) {
+      .practice-entry-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .section-content { max-width: 860px; margin: 0 auto; }
+    table { width: 100%; border-collapse: collapse; margin: 18px 0; }
+    th, td { padding: 8px 10px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: var(--accent-soft); }
+    @media print { .toolbar { display: none; } body { padding: 12mm; } }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="download-button" type="button" onclick="window.print()" title="打印或另存为 PDF">下载 PDF</button>
+  </div>
+  <main class="section-content">
+    <p class="eyebrow">模块 01 · 开放</p>
+    <h1>通用底层</h1>
+    <h2>学习目标</h2>
+    <p>让零基础用户先建立一套所有术数都绕不开的底层语言：阴阳、五行、天干地支、八卦、旺衰和体用。</p>
+    <h2>核心内容</h2>
+    <ul>
+      <li>阴阳的相互关系和判断方式；</li>
+      <li>五行生克、乘侮、旺相休囚死；</li>
+      <li>天干地支、六十甲子和时间标记；</li>
+      <li>先天八卦与后天八卦的位置差异；</li>
+      <li>术数里“象、数、理、体用”的基本含义。</li>
+    </ul>
+    <h2>先建立一条理解线</h2>
+    <div class="scenario">
+      <h3>三易：变易、简易、不易</h3>
+      <p>南怀瑾在《易经杂说》里反复强调，学《易》先懂三件事：万事万物随时在变，这是“变易”；把复杂现象归纳成简单规则，这是“简易”；变化背后那个能生万变的本体不变，这是“不易”。</p>
+      <p>落到学习上就是：不要急着背结论，先养成“看变化、找规律、认本质”的习惯。</p>
+    </div>
+    <div class="scenario">
+      <h3>理、象、数</h3>
+      <p>任何一件事都可以从三个角度观察：为什么发生是“理”，呈现出来是什么样子是“象”，发展到什么程度、多久会变是“数”。</p>
+      <p>例如熬夜：理是消耗，象是疲惫和注意力下降，数是连续多少天、每天少睡几小时。三者合起来，才不是只在“吉凶”两个字上打转。</p>
+    </div>
+    <div class="scenario">
+      <h3>玩索而有得</h3>
+      <p>南怀瑾引孔子的话“玩索而有得”：学《易》不要死背，而要像玩牌一样反复排列、对照、验证。</p>
+      <p>所以这一页的图、口诀、情景案例，都要互相串着看。先看卦画，再放到方位图里，再拿一个生活场景去套。</p>
+    </div>
+    <div class="scenario">
+      <h3>八卦不是八个“神秘符号”</h3>
+      <p>南怀瑾说“卦者挂也”，八卦就是天地间八类最大的自然现象被挂出来：天、地、日、月、雷、风、山、泽。</p>
+      <p>先把它们当自然现象理解，再学习它们如何组合变化，就不容易掉进神秘化。</p>
+    </div>
+    <div class="scenario">
+      <h3>倪海厦视角：先验证，再谈信不信</h3>
+      <p>倪海厦把《天纪》解释为“自然法则”。他的学法不是先争对错，而是先把它当成一个假设，用空杯心态去看，再到现实里反复对照验证。</p>
+      <p>这样学“理、象、数”，就不会只背名词，而是会把书上的规则变成能复盘的观察。</p>
+    </div>
+    <h2>知识点清单</h2>
+    <h3>阴阳</h3>
+    <ul>
+      <li>对立：动与静、明与暗、刚与柔；</li>
+      <li>互根：阴中有阳，阳中有阴；</li>
+      <li>消长：一方的增强往往伴随着另一方减弱；</li>
+      <li>转化：条件变化时，阴阳可以向对方转化。</li>
+    </ul>
+    <div class="mnemonic">
+      <strong>记忆口诀</strong>
+      <p>动为阳，静为阴；昼为阳，夜为阴；外为阳，内为阴。</p>
+    </div>
+    <div class="scenario">
+      <h3>南怀瑾讲法：阴阳是代号，不是神秘</h3>
+      <p>阴阳只是观察事物的两个对立面。手背是阳，手心是阴；白天是阳，夜晚是阴。它们不是固定标签，而是看“此刻、此地、这件事”怎么分。</p>
+      <p>学习时先破除神秘感：阴阳不是用来吓人，而是用来描述变化和关系。</p>
+    </div>
+    <div class="scenario">
+      <h3>倪海厦视角：阴阳要看位置和关系</h3>
+      <p>倪海厦谈“形与神”时提醒：世界上的书都可以说是“形”，真正要传的是背后的“神”。阴阳不是纸上的两个词，而是要看它在当下事件里处在什么位置、和谁相对。</p>
+      <p>初学者先建立“位置决定念，念影响做法”的意识：同一个现象，位置和参照一换，阴阳判断就不同。</p>
+    </div>
+    <h3>五行</h3>
+    <ul>
+      <li>木火土金水的相生顺序：木生火、火生土、土生金、金生水、水生木；</li>
+      <li>相克顺序：木克土、土克水、水克火、火克金、金克木；</li>
+      <li>乘侮：过旺或过弱时，会打破正常的生克；</li>
+      <li>旺相休囚死：同一五行在不同季节里力量不同。</li>
+    </ul>
+    <div class="mnemonic">
+      <strong>记忆口诀</strong>
+      <p>木火土金水，顺位相生；木土水火金，隔位相克。</p>
+    </div>
+    <div class="scenario">
+      <h3>南怀瑾讲法：五行是五种功能</h3>
+      <p>五行不是五种具体物质，而是五种动能：木主生发，火主热能，土主承载，金主坚固收敛，水主流动周流。</p>
+      <p>相生是邻位递进；相克是隔位制约。生与克不是好坏，而是任何系统保持平衡的两只手。</p>
+    </div>
+    <div class="scenario">
+      <h3>倪海厦视角：五行是转化顺序</h3>
+      <p>倪海厦讲相生时会落到生活里：树木要长大需要水，火烧完变土，金属从土中炼出，金属熔化又成水。这样记五行，不只是五个符号，而是自然里一套能量转化顺序。</p>
+      <p>生和克也不是对立的好坏，而是系统用来平衡的两股力量。</p>
+    </div>
+    <div class="diagram" aria-label="五行相生图">
+      <svg viewBox="0 0 520 380" role="img">
+        <defs>
+          <marker id="arrow-green" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M0,0 L9,4.5 L0,9 Z" fill="#2f6b46"></path>
+          </marker>
+          <marker id="arrow-red" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M0,0 L9,4.5 L0,9 Z" fill="#8f3f35"></path>
+          </marker>
+        </defs>
+        <path d="M260,78 L374,151 L328,307 L192,307 L146,151 Z" fill="none" stroke="#2f6b46" stroke-width="3" marker-end="url(#arrow-green)"></path>
+        <path d="M260,78 L328,307 M374,151 L146,151 M328,307 L192,307 M192,307 L374,151 M146,151 L260,78" fill="none" stroke="#8f3f35" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#arrow-red)"></path>
+        <g font-size="22" font-weight="700" text-anchor="middle">
+          <text x="260" y="58">木</text>
+          <text x="395" y="160">火</text>
+          <text x="342" y="337">土</text>
+          <text x="178" y="337">金</text>
+          <text x="125" y="160">水</text>
+        </g>
+        <text x="260" y="382" text-anchor="middle" font-size="13" fill="#6f6b63">绿线为相生，红线为相克</text>
+      </svg>
+    </div>
+    <p class="diagram-caption">五行相生相克</p>
+    <h3>天干地支</h3>
+    <ul>
+      <li>十天干：甲乙丙丁戊己庚辛壬癸；</li>
+      <li>十二地支：子丑寅卯辰巳午未申酉戌亥；</li>
+      <li>干支不仅表时间，还带阴阳、五行、方位、生肖等信息；</li>
+      <li>六十甲子由十天干和十二地支按规则循环组合而成。</li>
+    </ul>
+    <table>
+      <thead><tr><th>天干</th><th>阴阳</th><th>五行</th><th>方向</th><th>含义</th></tr></thead>
+      <tbody>
+        <tr><td>甲</td><td>阳</td><td>木</td><td>东</td><td>草木破土而出</td></tr>
+        <tr><td>乙</td><td>阴</td><td>木</td><td>东</td><td>草木柔韧弯曲</td></tr>
+        <tr><td>丙</td><td>阳</td><td>火</td><td>南</td><td>阳光灿烂</td></tr>
+        <tr><td>丁</td><td>阴</td><td>火</td><td>南</td><td>灯烛之火</td></tr>
+        <tr><td>戊</td><td>阳</td><td>土</td><td>中</td><td>大地厚土</td></tr>
+        <tr><td>己</td><td>阴</td><td>土</td><td>中</td><td>田园之土</td></tr>
+        <tr><td>庚</td><td>阳</td><td>金</td><td>西</td><td>刀剑之金</td></tr>
+        <tr><td>辛</td><td>阴</td><td>金</td><td>西</td><td>珠玉之金</td></tr>
+        <tr><td>壬</td><td>阳</td><td>水</td><td>北</td><td>江海之水</td></tr>
+        <tr><td>癸</td><td>阴</td><td>水</td><td>北</td><td>雨露之水</td></tr>
+      </tbody>
+    </table>
+    <div class="mnemonic">
+      <strong>记忆口诀</strong>
+      <p>甲乙木，丙丁火，戊己土，庚辛金，壬癸水。</p>
+    </div>
+    <div class="scenario">
+      <h3>南怀瑾讲法：天干是五行的阴阳两分</h3>
+      <p>甲乙都属木，但甲更像生发中的木，乙更像已经成形的木；丙丁都属火，但丙是火的原素，丁是成形的火。</p>
+      <p>天干地支不是孤立名词，而是古人对天文、地球和星球相互作用的一种归纳。</p>
+    </div>
+    <div class="scenario">
+      <h3>倪海厦视角：天干地支是时间坐标</h3>
+      <p>倪海厦在讲排盘时强调，年月日时各有干支，不是把四个孤立字凑在一起，而是把一个人放进同一套时间坐标里看。</p>
+      <p>所以学习天干地支，先记位置和顺序，再补阴阳五行属性，比急着记吉凶更重要。</p>
+    </div>
+    <div class="diagram" aria-label="天干地支图">
+      <svg viewBox="0 0 560 300" role="img">
+        <circle cx="280" cy="150" r="112" fill="none" stroke="#1b2a4a" stroke-width="2"></circle>
+        <circle cx="280" cy="150" r="72" fill="none" stroke="#c8923e" stroke-width="2"></circle>
+        <g font-size="16" font-weight="700" text-anchor="middle">
+          <text x="280" y="58">午</text>
+          <text x="386" y="112">巳</text>
+          <text x="386" y="208">未</text>
+          <text x="280" y="262">子</text>
+          <text x="174" y="208">亥</text>
+          <text x="174" y="112">丑</text>
+        </g>
+        <g font-size="14" font-weight="700" text-anchor="middle" fill="#7a4c2c">
+          <text x="280" y="108">午</text>
+          <text x="332" y="164">巳</text>
+          <text x="332" y="196">未</text>
+          <text x="280" y="226">子</text>
+          <text x="228" y="196">亥</text>
+          <text x="228" y="164">丑</text>
+        </g>
+        <text x="280" y="286" text-anchor="middle" font-size="13" fill="#6f6b63">外圈：十二地支方位示意；内圈：五行生克循环</text>
+      </svg>
+    </div>
+    <p class="diagram-caption">天干地支与方位图例</p>
+    <h3>六十甲子速查</h3>
+    <table>
+      <tbody>
+        <tr><td>01 甲子</td><td>11 甲戌</td><td>21 甲申</td><td>31 甲午</td><td>41 甲辰</td><td>51 甲寅</td></tr>
+        <tr><td>02 乙丑</td><td>12 乙亥</td><td>22 乙酉</td><td>32 乙未</td><td>42 乙巳</td><td>52 乙卯</td></tr>
+        <tr><td>03 丙寅</td><td>13 丙子</td><td>23 丙戌</td><td>33 丙申</td><td>43 丙午</td><td>53 丙辰</td></tr>
+        <tr><td>04 丁卯</td><td>14 丁丑</td><td>24 丁亥</td><td>34 丁酉</td><td>44 丁未</td><td>54 丁巳</td></tr>
+        <tr><td>05 戊辰</td><td>15 戊寅</td><td>25 戊子</td><td>35 戊戌</td><td>45 戊申</td><td>55 戊午</td></tr>
+        <tr><td>06 己巳</td><td>16 己卯</td><td>26 己丑</td><td>36 己亥</td><td>46 己酉</td><td>56 己未</td></tr>
+        <tr><td>07 庚午</td><td>17 庚辰</td><td>27 庚寅</td><td>37 庚子</td><td>47 庚戌</td><td>57 庚申</td></tr>
+        <tr><td>08 辛未</td><td>18 辛巳</td><td>28 辛卯</td><td>38 辛丑</td><td>48 辛亥</td><td>58 辛酉</td></tr>
+        <tr><td>09 壬申</td><td>19 壬午</td><td>29 壬辰</td><td>39 壬寅</td><td>49 壬子</td><td>59 壬戌</td></tr>
+        <tr><td>10 癸酉</td><td>20 癸未</td><td>30 癸巳</td><td>40 癸卯</td><td>50 癸丑</td><td>60 癸亥</td></tr>
+      </tbody>
+    </table>
+    <h3>五行人格参考</h3>
+    <table>
+      <thead><tr><th>五行</th><th>正面</th><th>负面</th></tr></thead>
+      <tbody>
+        <tr><td>木</td><td>包容、有担当</td><td>固执、不知变通</td></tr>
+        <tr><td>火</td><td>热情、有感染力</td><td>急躁、缺乏耐心</td></tr>
+        <tr><td>土</td><td>踏实、包容力强</td><td>保守、反应较慢</td></tr>
+        <tr><td>金</td><td>决断力强、执行力好</td><td>过于刚性、不通融</td></tr>
+        <tr><td>水</td><td>聪明灵活、适应力强</td><td>善变、缺乏原则</td></tr>
+      </tbody>
+    </table>
+    <h3>八卦</h3>
+    <ul>
+      <li>先天八卦主要表达体用关系，后天八卦常用于方位和现实取象；</li>
+      <li>乾、兑、离、震、巽、坎、艮、坤各有自然象和家庭象；</li>
+      <li>学习时先记住后天八卦的方位，再做关联记忆。</li>
+    </ul>
+    <div class="mnemonic">
+      <strong>记忆口诀</strong>
+      <p>乾三连，坤六断；震仰盂，艮覆碗；离中虚，坎中满；兑上缺，巽下断。</p>
+    </div>
+    <div class="mnemonic">
+      <strong>方位口诀</strong>
+      <p>离南坎北，震东兑西；巽东南，坤西南；乾西北，艮东北。</p>
+    </div>
+    <div class="scenario">
+      <h3>南怀瑾讲法：先天看生成，后天看运用</h3>
+      <p>先天八卦偏重宇宙生成的大结构；后天八卦偏重现实中的方位、时间和运用法则。学习时先把后天八卦放进九宫方位，记住“一坎、二坤、三震、四巽、五中、六乾、七兑、八艮、九离”。</p>
+      <p>不要两张图混记：一张用来理解体，一张用来理解用。</p>
+    </div>
+    <div class="scenario">
+      <h3>倪海厦视角：先天为体，后天为用</h3>
+      <p>倪海厦沿用“伏羲氏制定先天八卦图为体，周文王制定后天八卦图为用”的分法：先天讲生成与本体，后天讲方位与现实运用。</p>
+      <p>他还提醒，不要只抓着《易经》的词，要尽量用“象”来理解。八卦先落成自然现象和方位，再进入卦辞。</p>
+    </div>
+    <div class="trigram-grid" aria-label="先天八卦图">
+      <div class="trigram-cell"><span class="symbol">☰</span>乾 1</div>
+      <div class="trigram-cell"><span class="symbol">☱</span>兑 2</div>
+      <div class="trigram-cell"><span class="symbol">☲</span>离 3</div>
+      <div class="trigram-cell"><span class="symbol">☳</span>震 4</div>
+      <div class="trigram-cell"><span class="symbol">☴</span>巽 5</div>
+      <div class="trigram-cell"><span class="symbol">☵</span>坎 6</div>
+      <div class="trigram-cell"><span class="symbol">☶</span>艮 7</div>
+      <div class="trigram-cell"><span class="symbol">☷</span>坤 8</div>
+      <div class="trigram-cell center">先天</div>
+    </div>
+    <p class="diagram-caption">先天八卦卦画与卦数</p>
+    <div class="bagua-grid" aria-label="后天八卦方位图">
+      <div class="bagua-cell">☴ 巽<br>东南</div>
+      <div class="bagua-cell">☲ 离<br>南</div>
+      <div class="bagua-cell">☷ 坤<br>西南</div>
+      <div class="bagua-cell">☳ 震<br>东</div>
+      <div class="bagua-cell center">中</div>
+      <div class="bagua-cell">☱ 兑<br>西</div>
+      <div class="bagua-cell">☶ 艮<br>东北</div>
+      <div class="bagua-cell">☵ 坎<br>北</div>
+      <div class="bagua-cell">☰ 乾<br>西北</div>
+    </div>
+    <p class="diagram-caption">后天八卦方位</p>
+    <h3>十二地支掐指图</h3>
+    <div class="finger-grid" aria-label="十二地支掐指图">
+      <div class="finger-column">
+        <div class="finger-node">寅</div><div class="finger-node">卯</div><div class="finger-node">辰</div>
+      </div>
+      <div class="finger-column">
+        <div class="finger-node">巳</div><div class="finger-node">午</div><div class="finger-node">未</div>
+      </div>
+      <div class="finger-column">
+        <div class="finger-node">申</div><div class="finger-node">酉</div><div class="finger-node">戌</div>
+      </div>
+      <div class="finger-column">
+        <div class="finger-node">亥</div><div class="finger-node">子</div><div class="finger-node">丑</div>
+      </div>
+      <div class="finger-label">食指</div>
+      <div class="finger-label">中指</div>
+      <div class="finger-label">无名指</div>
+      <div class="finger-label">小指</div>
+    </div>
+    <p class="diagram-caption">十二地支在四指上的教学简化图例</p>
+    <h2>记忆口诀</h2>
+    <div class="scenario">
+      <h3>五行相生</h3>
+      <p><strong>木火土金水，循环不断。</strong></p>
+      <p>联想：木头燃烧生火，火烧完留下土，土里挖出金属，金属熔化成水，水滋养树木。</p>
+    </div>
+    <div class="scenario">
+      <h3>五行相克</h3>
+      <p><strong>木土水火金，隔一相克。</strong></p>
+      <p>联想：树根破土，土挡水流，水能灭火，火能熔金，刀斧砍木。</p>
+    </div>
+    <div class="scenario">
+      <h3>十天干五行</h3>
+      <p><strong>甲乙木，丙丁火，戊己土，庚辛金，壬癸水。</strong></p>
+      <p>联想：甲乙像植物，丙丁像光和热，戊己像土地，庚辛像金属，壬癸像江河。</p>
+    </div>
+    <div class="scenario">
+      <h3>十二地支五行与生肖</h3>
+      <p><strong>寅卯木，巳午火，申酉金，亥子水，辰戌丑未土。</strong></p>
+      <p><strong>子鼠丑牛，寅虎卯兔，辰龙巳蛇，午马未羊，申猴酉鸡，戌狗亥猪。</strong></p>
+      <p>联想：地支既表时间，也带生肖、方位和季节，先记顺序，再补五行。</p>
+    </div>
+    <div class="scenario">
+      <h3>八卦歌</h3>
+      <p><strong>乾三连，坤六断；震仰盂，艮覆碗；离中虚，坎中满；兑上缺，巽下断。</strong></p>
+      <p>联想：先看卦画，再记自然象：乾天、坤地、震雷、巽风、坎水、离火、艮山、兑泽。</p>
+    </div>
+    <div class="scenario">
+      <h3>后天八卦方位</h3>
+      <p><strong>离南坎北，震东兑西，巽东南坤西南，乾西北艮东北。</strong></p>
+      <p>联想：把后天八卦图想象成一张地图，先固定南北东西，再补四角。</p>
+    </div>
+    <div class="scenario">
+      <h3>五行旺衰</h3>
+      <p><strong>当令者旺，令生者相，生令者休，克令者囚，令克者死。</strong></p>
+      <p>联想：春季木旺；木生火，所以火相；水生木，所以水休；金克木，所以金囚；木克土，所以土死。</p>
+    </div>
+    <p>上面的口诀都可以和下方情景案例对照使用：先背口诀建立索引，再拿一个真实场景去套，最后回到练习里验证。</p>
+    <h2>为什么从这里开始</h2>
+    <p>无论以后学六爻、八字、紫微还是风水，都需要用同一套基础语言描述。基础不通，后面就只能在名词里打转。</p>
+    <p>理解不透时，继续看下面的 9 个情景案例，把口诀和真实生活连起来。</p>
+    <section class="scenario-carousel" id="scenario-carousel" aria-label="情景案例">
+      <article class="scenario-card">
+        <h3>1. 连续加班后，身体和计划都在报警</h3>
+        <p>小李连续三周加班，白天没精神，晚上刷手机停不下来，健身也中断了。</p>
+        <h4>先看信号</h4>
+        <p>停不下来、睡不好、计划中断，不是三个独立问题，而是同一个信号：外耗太多，补给跟不上。</p>
+        <h4>用五行说</h4>
+        <p>像一团火烧得太久：火过旺耗神，木被抽去生火，土也慢慢失去节律。计划、身体、作息一起受影响。</p>
+        <h4>别急着贴标签</h4>
+        <p>这不是说你“火旺”，而是在练一种观察：什么在消耗，什么在被消耗，哪里还能补充能量。</p>
+        <h4>学完能怎么用</h4>
+        <p>以后看任何状态，都先别问吉凶，先问“哪里过、哪里弱、哪里能生助”。</p>
+      </article>
+      <article class="scenario-card">
+        <h3>2. 计划总列很多，却很难坚持</h3>
+        <p>小王想法很多，但执行总是半途而废。</p>
+        <h4>生活化比喻</h4>
+        <p>像一棵树只长叶子、不长根：看起来生机很多，但风一吹就倒。</p>
+        <h4>用五行说</h4>
+        <p>木主条达、计划和生长。想法多但落不下去，通常是“木的条达不足”。</p>
+        <h4>关键提醒</h4>
+        <p>不要只问“他有没有想法”，还要问“这个计划能不能持续生长”。</p>
+      </article>
+      <article class="scenario-card">
+        <h3>3. 合作沟通混乱，大家各说各话</h3>
+        <p>讨论了很久，信息很多，却始终没有结论。</p>
+        <h4>生活化比喻</h4>
+        <p>像群里所有人都在刷屏，却没人出来做会议纪要和结论。</p>
+        <h4>用五行说</h4>
+        <p>火主信息、表达和扩散。声音很多、讨论很热，可能是火过旺，不是信息不够。</p>
+        <h4>关键提醒</h4>
+        <p>这种情况下，真正缺的往往不是更多观点，而是收敛、定调和一个能拍板的人。</p>
+      </article>
+      <article class="scenario-card">
+        <h3>4. 守规矩，但遇到变化容易僵住</h3>
+        <p>小张做事稳定，可环境一变就不知道怎么调整。</p>
+        <h4>生活化比喻</h4>
+        <p>像一张很稳的桌子，能放很多东西，但不会自己转身。</p>
+        <h4>用五行说</h4>
+        <p>土主稳定、节律和承载。稳定过头，就会变成僵化，遇到变化转不动。</p>
+        <h4>关键提醒</h4>
+        <p>稳定是优点，但稳定不等于不变。要看它是“稳得住”，还是“动不了”。</p>
+      </article>
+      <article class="scenario-card">
+        <h3>5. 执行力强，但过于强硬</h3>
+        <p>小陈做事果断，团队却觉得他太刚、不肯让步。</p>
+        <h4>生活化比喻</h4>
+        <p>像一把很快的刀：切事利落，但拿得太近也容易伤到人。</p>
+        <h4>用五行说</h4>
+        <p>金主果断、执行和边界。金过偏时，果断会变成刚硬、不通融。</p>
+        <h4>关键提醒</h4>
+        <p>果断和强势是一体两面，关键不是有没有力量，而是力量有没有留出合作空间。</p>
+      </article>
+      <article class="scenario-card">
+        <h3>6. 很会变通，却容易失去原则</h3>
+        <p>小刘适应力强，什么环境都能融入，但做决定时常摇摆。</p>
+        <h4>生活化比喻</h4>
+        <p>像水，哪里都能流过去，但如果河道不固定，最后容易漫得到处都是。</p>
+        <h4>用五行说</h4>
+        <p>水主智慧、流动和变通。水过偏时，会显得原则不稳、方向不定。</p>
+        <h4>关键提醒</h4>
+        <p>变通是能力，但需要有稳定的核心方向，否则“灵活”会变成“摇摆”。</p>
+      </article>
+      <article class="scenario-card">
+        <h3>7. 伴侣稳定支持，状态慢慢恢复</h3>
+        <p>小李长期得到伴侣在生活和情绪上的支持，整个人逐渐缓过来。</p>
+        <h4>生活化比喻</h4>
+        <p>像手机快没电时，有人一直递着充电宝，虽然慢，但能续上。</p>
+        <h4>用五行说</h4>
+        <p>持续、稳定的支持，可以理解为“得到生助”。它不是刺激，而是补给。</p>
+        <h4>关键提醒</h4>
+        <p>看事情不能只盯着消耗，也要看有没有长期、稳定的外部助力。</p>
+      </article>
+      <article class="scenario-card">
+        <h3>8. 冬天水气重，火相对较弱</h3>
+        <p>冬季寒冷，水旺，火的力量自然受到抑制。</p>
+        <h4>生活化比喻</h4>
+        <p>像冬天点火：柴再干，周围寒气重，火也不容易烧旺。</p>
+        <h4>用五行说</h4>
+        <p>五行旺衰会随季节变化。冬季水旺，火处于休囚或死地。</p>
+        <h4>关键提醒</h4>
+        <p>判断一个五行强不强，不能只看它本身，还要看时间、季节和环境。</p>
+      </article>
+      <article class="scenario-card">
+        <h3>9. 春天适合启动新计划</h3>
+        <p>春天万物生发，人也更容易产生启动和生长的动力。</p>
+        <h4>生活化比喻</h4>
+        <p>像春天插秧：不是秧苗突然变强，而是时节到了，发芽和生长更容易。</p>
+        <h4>用五行说</h4>
+        <p>春季木旺，木主生发、条达和启动。</p>
+        <h4>关键提醒</h4>
+        <p>同样一个计划，放在不同阶段，结果可能完全不同。时机本身也是力量。</p>
+      </article>
+    </section>
+    <div class="carousel-controls">
+      <button type="button" id="scenario-prev" aria-label="上一个情景">‹</button>
+      <button type="button" id="scenario-next" aria-label="下一个情景">›</button>
+    </div>
+    <h2>练习</h2>
+    <ul>
+      <li>用五行生克解释一个生活中的变化，例如季节、情绪或工作关系；</li>
+      <li>把十天干和十二地支的五行属性写成一张表；</li>
+      <li>用自己的话说明“体”和“用”在一件事里分别代表什么。</li>
+    </ul>
+    <div class="practice-entry-grid" aria-label="练习入口">
+      <a class="practice-entry" href="练习.html">
+        <span class="entry-kicker">自动化练习</span>
+        <span class="entry-title">进入自动化练习</span>
+        <span class="entry-desc">逐题练习，提交后即时判断，结束后可重新开始。</span>
+        <span class="entry-action">开始练习 →</span>
+      </a>
+      <a class="practice-entry" href="题库预览.html">
+        <span class="entry-kicker">题库总览</span>
+        <span class="entry-title">题库预览</span>
+        <span class="entry-desc">按知识点、题型筛选，查看当前通用底层全部题目。</span>
+        <span class="entry-action">查看题库 →</span>
+      </a>
+    </div>
+    <h2>学习技巧</h2>
+    <ul>
+      <li>先画一张“五行生克闭环图”，贴在经常能看到的地方；</li>
+      <li>不要一上来背全部表格，先学会查表，用多了自然记住；</li>
+      <li>每天用五行解释一个生活事件，把抽象概念变成具体经验；</li>
+      <li>给每个术语做一张小卡，记录“定义 + 例子 + 容易混的地方”；</li>
+      <li>学习八卦时，先固定使用后天八卦方位图，避免两张图混记。</li>
+    </ul>
+    <h2>开源数据参考</h2>
+    <ul>
+      <li><a href="https://github.com/haozhexu/Qi">haozhexu/Qi</a>：阴阳五行、干支历、节气等基础数据结构。</li>
+      <li><a href="https://github.com/lizongying/base-60">lizongying/base-60</a>：六十甲子与天干地支表示。</li>
+      <li><a href="https://www.npmjs.com/package/@soul-atelier/core">@soul-atelier/core</a>：五行、八卦、干支关系等前端基础数据。</li>
+      <li><a href="https://github.com/fundgao/DAO_DE_JING">fundgao/DAO_DE_JING</a>：阴阳五行与周易学习素材，可用来交叉核对口诀、图例和案例。</li>
+      <li><a href="https://github.com/dglijin-oss/chinese-metaphysics-skills">dglijin-oss/chinese-metaphysics-skills</a>：术数知识与技能聚合，可提取记忆口诀、理解案例和自学路径。</li>
+      <li><a href="https://github.com/big-dollar/YiJingZaShuo">big-dollar/YiJingZaShuo</a>：南怀瑾《易经杂说》讲记公开整理版，本页“理解串讲”中的短句与观点摘编自此。</li>
+      <li><a href="https://github.com/JuneYaooo/nihaisha-nishi-tcm/blob/main/references/tianji.md">JuneYaooo/nihaisha-nishi-tcm</a>：倪海厦《天纪》公开课程蒸馏与逐课摘要，本页“倪海厦视角”短句据此做学习化归纳。</li>
+    </ul>
+  </main>
+  <script>
+    document.querySelectorAll(".scenario-card").forEach((card) => {
+      const title = card.querySelector("h3");
+      const question = card.querySelector("p");
+      if (!title || !question) return;
+
+      const rest = [...card.children].filter((el) => el !== title && el !== question);
+      const button = document.createElement("button");
+      const answer = document.createElement("div");
+
+      button.type = "button";
+      button.className = "scenario-toggle";
+      button.textContent = "查看解析";
+
+      answer.className = "scenario-answer";
+      answer.hidden = true;
+      rest.forEach((el) => answer.appendChild(el));
+
+      card.appendChild(button);
+      card.appendChild(answer);
+
+      button.addEventListener("click", () => {
+        const willOpen = answer.hidden;
+        answer.hidden = !willOpen;
+        button.textContent = willOpen ? "收起解析" : "查看解析";
+      });
+    });
+
+    const carousel = document.getElementById("scenario-carousel");
+    const prev = document.getElementById("scenario-prev");
+    const next = document.getElementById("scenario-next");
+    prev.addEventListener("click", () => carousel.scrollBy({ left: -Math.min(420, carousel.clientWidth * 0.8), behavior: "smooth" }));
+    next.addEventListener("click", () => carousel.scrollBy({ left: Math.min(420, carousel.clientWidth * 0.8), behavior: "smooth" }));
+  </script>
+</body>
+</html>

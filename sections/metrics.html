@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>验证指标</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body { padding: 28px clamp(20px, 5vw, 64px) 40px; }
+    .toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+    .download-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .section-content { max-width: 860px; margin: 0 auto; }
+    @media print {
+      .toolbar { display: none; }
+      body { padding: 12mm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="download-button" type="button" onclick="window.print()" title="打印或另存为 PDF">下载 PDF</button>
+  </div>
+  <main class="section-content">
+    <p class="eyebrow">验证指标</p>
+    <h1>第一版先看三个信号</h1>
+    <ol>
+      <li>是否有人愿意付费，哪怕只有 3 人；</li>
+      <li>是否有人主动追问、转发或要求继续；</li>
+      <li>是否有人愿意成为种子用户，参与下一轮内容共创。</li>
+    </ol>
+  </main>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" fill="none">
+  <defs>
+    <linearGradient id="v3-gold" x1="140" y1="130" x2="860" y2="870" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D6AA5B"/>
+      <stop offset="0.5" stop-color="#C8923E"/>
+      <stop offset="1" stop-color="#9A6827"/>
+    </linearGradient>
+    <g id="v3-solid">
+      <rect x="-31" y="-6" width="62" height="12" rx="2" fill="#1B2A4A"/>
+    </g>
+    <g id="v3-broken">
+      <rect x="-31" y="-6" width="25" height="12" rx="2" fill="#1B2A4A"/>
+      <rect x="6" y="-6" width="25" height="12" rx="2" fill="#1B2A4A"/>
+    </g>
+    <g id="v3-qian">
+      <use href="#v3-solid" transform="translate(0 -26)"/>
+      <use href="#v3-solid"/>
+      <use href="#v3-solid" transform="translate(0 26)"/>
+    </g>
+    <g id="v3-dui">
+      <use href="#v3-broken" transform="translate(0 -26)"/>
+      <use href="#v3-solid"/>
+      <use href="#v3-solid" transform="translate(0 26)"/>
+    </g>
+    <g id="v3-li">
+      <use href="#v3-solid" transform="translate(0 -26)"/>
+      <use href="#v3-broken"/>
+      <use href="#v3-solid" transform="translate(0 26)"/>
+    </g>
+    <g id="v3-zhen">
+      <use href="#v3-broken" transform="translate(0 -26)"/>
+      <use href="#v3-broken"/>
+      <use href="#v3-solid" transform="translate(0 26)"/>
+    </g>
+    <g id="v3-kun">
+      <use href="#v3-broken" transform="translate(0 -26)"/>
+      <use href="#v3-broken"/>
+      <use href="#v3-broken" transform="translate(0 26)"/>
+    </g>
+    <g id="v3-gen">
+      <use href="#v3-solid" transform="translate(0 -26)"/>
+      <use href="#v3-broken"/>
+      <use href="#v3-broken" transform="translate(0 26)"/>
+    </g>
+    <g id="v3-kan">
+      <use href="#v3-broken" transform="translate(0 -26)"/>
+      <use href="#v3-solid"/>
+      <use href="#v3-broken" transform="translate(0 26)"/>
+    </g>
+    <g id="v3-xun">
+      <use href="#v3-solid" transform="translate(0 -26)"/>
+      <use href="#v3-solid"/>
+      <use href="#v3-broken" transform="translate(0 26)"/>
+    </g>
+  </defs>
+
+  <circle cx="500" cy="500" r="405" stroke="#C8923E" stroke-opacity="0.42" stroke-width="1.5"/>
+  <circle cx="500" cy="500" r="470" stroke="#C8923E" stroke-opacity="0.3" stroke-width="1.5"/>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Songti SC', 'Noto Serif CJK SC', serif" font-size="23" fill="#1B2A4A" text-anchor="middle" dominant-baseline="central">
+    <text transform="translate(500 500) rotate(-90) translate(0 -405)">子</text>
+    <text transform="translate(500 500) rotate(-60) translate(0 -405)">丑</text>
+    <text transform="translate(500 500) rotate(-30) translate(0 -405)">寅</text>
+    <text transform="translate(500 500) rotate(0) translate(0 -405)">卯</text>
+    <text transform="translate(500 500) rotate(30) translate(0 -405)">辰</text>
+    <text transform="translate(500 500) rotate(60) translate(0 -405)">巳</text>
+    <text transform="translate(500 500) rotate(90) translate(0 -405)">午</text>
+    <text transform="translate(500 500) rotate(120) translate(0 -405)">未</text>
+    <text transform="translate(500 500) rotate(150) translate(0 -405)">申</text>
+    <text transform="translate(500 500) rotate(180) translate(0 -405)">酉</text>
+    <text transform="translate(500 500) rotate(210) translate(0 -405)">戌</text>
+    <text transform="translate(500 500) rotate(240) translate(0 -405)">亥</text>
+  </g>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Songti SC', 'Noto Serif CJK SC', serif" font-size="28" fill="#C8923E" text-anchor="middle" dominant-baseline="central">
+    <text transform="translate(500 500) rotate(-90) translate(0 -470)">甲</text>
+    <text transform="translate(500 500) rotate(-54) translate(0 -470)">乙</text>
+    <text transform="translate(500 500) rotate(-18) translate(0 -470)">丙</text>
+    <text transform="translate(500 500) rotate(18) translate(0 -470)">丁</text>
+    <text transform="translate(500 500) rotate(54) translate(0 -470)">戊</text>
+    <text transform="translate(500 500) rotate(90) translate(0 -470)">己</text>
+    <text transform="translate(500 500) rotate(126) translate(0 -470)">庚</text>
+    <text transform="translate(500 500) rotate(162) translate(0 -470)">辛</text>
+    <text transform="translate(500 500) rotate(198) translate(0 -470)">壬</text>
+    <text transform="translate(500 500) rotate(234) translate(0 -470)">癸</text>
+  </g>
+
+  <polygon points="500,140 754.6,244.4 860,500 754.6,755.6 500,860 245.4,755.6 140,500 245.4,244.4" fill="none" stroke="#1B2A4A" stroke-width="5"/>
+  <polygon points="500,290 648.5,351.5 710,500 648.5,648.5 500,710 351.5,648.5 290,500 351.5,351.5" fill="none" stroke="#1B2A4A" stroke-opacity="0.72" stroke-width="2"/>
+  <g stroke="#C8923E" stroke-opacity="0.48" stroke-width="1.5">
+    <line x1="500" y1="290" x2="500" y2="140"/>
+    <line x1="648.5" y1="351.5" x2="754.6" y2="244.4"/>
+    <line x1="710" y1="500" x2="860" y2="500"/>
+    <line x1="648.5" y1="648.5" x2="754.6" y2="755.6"/>
+    <line x1="500" y1="710" x2="500" y2="860"/>
+    <line x1="351.5" y1="648.5" x2="245.4" y2="755.6"/>
+    <line x1="290" y1="500" x2="140" y2="500"/>
+    <line x1="351.5" y1="351.5" x2="245.4" y2="244.4"/>
+  </g>
+
+  <g transform="translate(500 500)">
+    <g transform="rotate(22.5) translate(0 -298)"><use href="#v3-qian"/></g>
+    <g transform="rotate(67.5) translate(0 -298)"><use href="#v3-dui"/></g>
+    <g transform="rotate(112.5) translate(0 -298)"><use href="#v3-li"/></g>
+    <g transform="rotate(157.5) translate(0 -298)"><use href="#v3-zhen"/></g>
+    <g transform="rotate(202.5) translate(0 -298)"><use href="#v3-kun"/></g>
+    <g transform="rotate(247.5) translate(0 -298)"><use href="#v3-gen"/></g>
+    <g transform="rotate(292.5) translate(0 -298)"><use href="#v3-kan"/></g>
+    <g transform="rotate(337.5) translate(0 -298)"><use href="#v3-xun"/></g>
+  </g>
+
+  <circle cx="500" cy="500" r="136" fill="#D6AA5B"/>
+  <path d="M500 364 A136 136 0 0 0 500 636 A68 68 0 0 1 500 500 A68 68 0 0 0 500 364 Z" fill="#1B2A4A"/>
+  <circle cx="500" cy="432" r="20" fill="#D6AA5B"/>
+  <circle cx="500" cy="568" r="20" fill="#1B2A4A"/>
+</svg>

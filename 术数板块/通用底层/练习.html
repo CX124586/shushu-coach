@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>通用底层 · 练习</title>
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+  <main class="practice-shell">
+    <p class="eyebrow">术数板块 · 通用底层</p>
+    <h1>通用底层练习</h1>
+    <p>先凭记忆作答，再看解释。答错或犹豫的题会自动进入后续复习。</p>
+
+    <section class="practice-card">
+      <div class="practice-progress">
+        <span id="progress"></span>
+        <span id="score"></span>
+      </div>
+      <div id="scenario" class="practice-scenario"></div>
+      <h2 id="prompt"></h2>
+      <div id="options" class="practice-options"></div>
+      <input id="fill-input" class="fill-input" type="text" autocomplete="off" placeholder="填写答案">
+      <textarea id="recall" class="recall-area" placeholder="先不要看资料，写下你记得的内容，然后自查。"></textarea>
+      <div id="feedback" class="practice-feedback">
+        <p id="explanation"></p>
+      </div>
+      <div class="practice-actions">
+        <button id="next" class="practice-button" type="button" disabled>下一题</button>
+        <button id="restart" class="practice-button" type="button" style="display:none">重新练习</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.PRACTICE_SUBJECT = "通用底层";
+  </script>
+  <script src="questions.js"></script>
+  <script src="../../练习模块/practice.js"></script>
+</body>
+</html>

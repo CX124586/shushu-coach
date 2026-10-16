@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" fill="none">
+  <defs>
+    <linearGradient id="outerRim" x1="180" y1="170" x2="1020" y2="1030" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF0C5"/>
+      <stop offset="0.2" stop-color="#F1CE83"/>
+      <stop offset="0.48" stop-color="#B77B2D"/>
+      <stop offset="0.76" stop-color="#7A491A"/>
+      <stop offset="1" stop-color="#2C1B0D"/>
+    </linearGradient>
+
+    <linearGradient id="innerRim" x1="1010" y1="180" x2="190" y2="1020" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFE7B0"/>
+      <stop offset="0.32" stop-color="#D9A34D"/>
+      <stop offset="0.68" stop-color="#8B5720"/>
+      <stop offset="1" stop-color="#3B2610"/>
+    </linearGradient>
+
+    <linearGradient id="barMetal" x1="-80" y1="-20" x2="80" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF0C5"/>
+      <stop offset="0.2" stop-color="#F0C978"/>
+      <stop offset="0.55" stop-color="#9D6424"/>
+      <stop offset="1" stop-color="#2B1C10"/>
+    </linearGradient>
+
+    <linearGradient id="barInk" x1="-80" y1="-20" x2="80" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#38547B"/>
+      <stop offset="0.32" stop-color="#213755"/>
+      <stop offset="0.72" stop-color="#101B2C"/>
+      <stop offset="1" stop-color="#050A12"/>
+    </linearGradient>
+
+    <radialGradient id="discSurface" cx="36%" cy="30%" r="76%">
+      <stop offset="0" stop-color="#FFF4D0"/>
+      <stop offset="0.22" stop-color="#E7BE70"/>
+      <stop offset="0.58" stop-color="#A36D2B"/>
+      <stop offset="1" stop-color="#4E2D12"/>
+    </radialGradient>
+
+    <radialGradient id="discInner" cx="45%" cy="38%" r="70%">
+      <stop offset="0" stop-color="#FFE8AF" stop-opacity="0.98"/>
+      <stop offset="0.48" stop-color="#D8A553" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#5E3512" stop-opacity="0.38"/>
+    </radialGradient>
+
+    <radialGradient id="sphereGold" cx="34%" cy="26%" r="78%">
+      <stop offset="0" stop-color="#FFF7D9"/>
+      <stop offset="0.18" stop-color="#F2D38E"/>
+      <stop offset="0.55" stop-color="#B97D2F"/>
+      <stop offset="0.84" stop-color="#6C3F17"/>
+      <stop offset="1" stop-color="#28180A"/>
+    </radialGradient>
+
+    <radialGradient id="sphereInk" cx="34%" cy="26%" r="78%">
+      <stop offset="0" stop-color="#54728F"/>
+      <stop offset="0.25" stop-color="#29415F"/>
+      <stop offset="0.68" stop-color="#111D2D"/>
+      <stop offset="1" stop-color="#05090F"/>
+    </radialGradient>
+
+    <radialGradient id="eyeGold" cx="34%" cy="30%" r="72%">
+      <stop offset="0" stop-color="#FFF8D5"/>
+      <stop offset="0.5" stop-color="#E8B95F"/>
+      <stop offset="1" stop-color="#59300E"/>
+    </radialGradient>
+
+    <radialGradient id="eyeInk" cx="34%" cy="30%" r="72%">
+      <stop offset="0" stop-color="#577693"/>
+      <stop offset="0.45" stop-color="#253E58"/>
+      <stop offset="1" stop-color="#060C14"/>
+    </radialGradient>
+
+    <filter id="deepShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#120B04" flood-opacity="0.5"/>
+    </filter>
+
+    <filter id="barShadow" x="-45%" y="-45%" width="190%" height="190%">
+      <feDropShadow dx="0" dy="13" stdDeviation="10" flood-color="#080503" flood-opacity="0.58"/>
+    </filter>
+
+    <filter id="glossBlur" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.58" numOctaves="4" seed="23" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.3 0 0 0 0 0.24 0 0 0 0 0.14 0 0 0 0.42 0"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+
+    <g id="solidBar3d">
+      <rect x="-88" y="-19" width="176" height="38" rx="19" fill="#080B12" filter="url(#barShadow)"/>
+      <rect x="-82" y="-17" width="164" height="34" rx="17" fill="url(#barInk)"/>
+      <rect x="-82" y="-17" width="164" height="10" rx="5" fill="#FFFFFF" opacity="0.22"/>
+      <rect x="-82" y="7" width="164" height="11" rx="5.5" fill="#080503" opacity="0.28"/>
+    </g>
+
+    <g id="brokenBar3d">
+      <g>
+        <rect x="-88" y="-19" width="76" height="38" rx="19" fill="#080B12" filter="url(#barShadow)"/>
+        <rect x="-82" y="-17" width="64" height="34" rx="17" fill="url(#barInk)"/>
+        <rect x="-82" y="-17" width="64" height="10" rx="5" fill="#FFFFFF" opacity="0.2"/>
+        <rect x="-82" y="7" width="64" height="11" rx="5.5" fill="#080503" opacity="0.26"/>
+      </g>
+      <g>
+        <rect x="12" y="-19" width="76" height="38" rx="19" fill="#080B12" filter="url(#barShadow)"/>
+        <rect x="18" y="-17" width="64" height="34" rx="17" fill="url(#barInk)"/>
+        <rect x="18" y="-17" width="64" height="10" rx="5" fill="#FFFFFF" opacity="0.2"/>
+        <rect x="18" y="7" width="64" height="11" rx="5.5" fill="#080503" opacity="0.26"/>
+      </g>
+    </g>
+
+    <g id="qian">
+      <use href="#solidBar3d" y="-116"/>
+      <use href="#solidBar3d"/>
+      <use href="#solidBar3d" y="116"/>
+    </g>
+
+    <g id="dui">
+      <use href="#brokenBar3d" y="-116"/>
+      <use href="#solidBar3d"/>
+      <use href="#solidBar3d" y="116"/>
+    </g>
+
+    <g id="li">
+      <use href="#solidBar3d" y="-116"/>
+      <use href="#brokenBar3d"/>
+      <use href="#solidBar3d" y="116"/>
+    </g>
+
+    <g id="zhen">
+      <use href="#brokenBar3d" y="-116"/>
+      <use href="#brokenBar3d"/>
+      <use href="#solidBar3d" y="116"/>
+    </g>
+
+    <g id="xun">
+      <use href="#solidBar3d" y="-116"/>
+      <use href="#solidBar3d"/>
+      <use href="#brokenBar3d" y="116"/>
+    </g>
+
+    <g id="kan">
+      <use href="#brokenBar3d" y="-116"/>
+      <use href="#solidBar3d"/>
+      <use href="#brokenBar3d" y="116"/>
+    </g>
+
+    <g id="gen">
+      <use href="#solidBar3d" y="-116"/>
+      <use href="#brokenBar3d"/>
+      <use href="#brokenBar3d" y="116"/>
+    </g>
+
+    <g id="kun">
+      <use href="#brokenBar3d" y="-116"/>
+      <use href="#brokenBar3d"/>
+      <use href="#brokenBar3d" y="116"/>
+    </g>
+  </defs>
+
+  <rect width="1200" height="1200" fill="none"/>
+
+  <g filter="url(#deepShadow)">
+    <circle cx="600" cy="600" r="505" fill="none" stroke="#2A180A" stroke-width="52"/>
+    <circle cx="600" cy="600" r="505" fill="none" stroke="url(#outerRim)" stroke-width="36"/>
+    <circle cx="600" cy="600" r="505" fill="none" stroke="#FFF1C2" stroke-opacity="0.46" stroke-width="5"/>
+    <circle cx="600" cy="600" r="480" fill="none" stroke="#201206" stroke-opacity="0.48" stroke-width="3"/>
+  </g>
+
+  <g filter="url(#deepShadow)">
+    <circle cx="600" cy="600" r="439" fill="none" stroke="#2A180A" stroke-width="34"/>
+    <circle cx="600" cy="600" r="439" fill="none" stroke="url(#innerRim)" stroke-width="22"/>
+    <circle cx="600" cy="600" r="439" fill="none" stroke="#FFF3C8" stroke-opacity="0.34" stroke-width="3"/>
+  </g>
+
+  <circle cx="600" cy="600" r="398" fill="url(#discSurface)"/>
+  <circle cx="600" cy="600" r="398" fill="url(#discInner)"/>
+  <ellipse cx="465" cy="438" rx="190" ry="118" fill="#FFFFFF" opacity="0.14" filter="url(#glossBlur)"/>
+  <ellipse cx="742" cy="778" rx="220" ry="150" fill="#120B05" opacity="0.16" filter="url(#glossBlur)"/>
+  <circle cx="600" cy="600" r="398" fill="none" stroke="#FFF1C2" stroke-opacity="0.3" stroke-width="4"/>
+  <circle cx="600" cy="600" r="398" fill="none" stroke="#2A180A" stroke-opacity="0.62" stroke-width="6"/>
+
+  <g stroke="#C08A3D" stroke-opacity="0.54" stroke-width="5" stroke-linecap="round">
+    <path d="M600 224V266M600 934V976M224 600H266M934 600H976"/>
+    <path d="M334 334L364 364M836 836L866 866M866 334L836 364M334 866L364 836"/>
+  </g>
+
+  <g>
+    <g transform="translate(600 600) rotate(0) translate(0 -342)">
+      <use href="#qian"/>
+    </g>
+    <g transform="translate(600 600) rotate(45) translate(0 -342)">
+      <use href="#dui"/>
+    </g>
+    <g transform="translate(600 600) rotate(90) translate(0 -342)">
+      <use href="#li"/>
+    </g>
+    <g transform="translate(600 600) rotate(135) translate(0 -342)">
+      <use href="#zhen"/>
+    </g>
+    <g transform="translate(600 600) rotate(180) translate(0 -342)">
+      <use href="#xun"/>
+    </g>
+    <g transform="translate(600 600) rotate(225) translate(0 -342)">
+      <use href="#kan"/>
+    </g>
+    <g transform="translate(600 600) rotate(270) translate(0 -342)">
+      <use href="#gen"/>
+    </g>
+    <g transform="translate(600 600) rotate(315) translate(0 -342)">
+      <use href="#kun"/>
+    </g>
+  </g>
+
+  <g transform="translate(600 600)" filter="url(#deepShadow)">
+    <ellipse cx="0" cy="222" rx="182" ry="28" fill="#120B05" opacity="0.34" filter="url(#glossBlur)"/>
+    <circle cx="0" cy="0" r="220" fill="url(#sphereGold)"/>
+    <circle cx="0" cy="0" r="220" fill="none" stroke="#FFF2C5" stroke-opacity="0.28" stroke-width="5"/>
+    <path d="M0 -220A220 220 0 0 1 0 220A110 110 0 0 1 0 0A110 110 0 0 0 0 -220Z" fill="url(#sphereInk)"/>
+    <circle cx="0" cy="-108" r="24" fill="url(#eyeGold)"/>
+    <circle cx="0" cy="108" r="24" fill="url(#eyeInk)"/>
+    <ellipse cx="-66" cy="-82" rx="112" ry="70" fill="#FFFFFF" opacity="0.14" filter="url(#glossBlur)"/>
+  </g>
+
+  <rect width="1200" height="1200" filter="url(#grain)" opacity="0.085" style="mix-blend-mode:multiply"/>
+</svg>

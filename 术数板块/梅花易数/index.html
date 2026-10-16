@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>梅花易数</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    body { padding: 28px clamp(20px, 5vw, 64px) 40px; }
+    .toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+    .download-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--accent);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .section-content { max-width: 860px; margin: 0 auto; }
+    table { width: 100%; border-collapse: collapse; margin: 18px 0; }
+    th, td { padding: 8px 10px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: var(--accent-soft); }
+    .practice-entry-grid { display: grid; gap: 12px; margin: 18px 0 26px; }
+    .practice-entry {
+      display: flex;
+      min-height: 154px;
+      padding: 18px 18px 16px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(27, 42, 74, 0.06);
+      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .practice-entry:hover,
+    .practice-entry:focus-visible {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 18px rgba(27, 42, 74, 0.12);
+    }
+    .entry-kicker { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: 0; }
+    .entry-title { margin-top: 6px; color: var(--ink); font-size: 21px; font-weight: 800; line-height: 1.35; letter-spacing: 0; }
+    .entry-desc { margin-top: 7px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .entry-action { margin-top: auto; padding-top: 14px; color: var(--accent); font-weight: 700; }
+    @media (min-width: 640px) { .practice-entry-grid { grid-template-columns: 1fr 1fr; } }
+    @media print { .toolbar, .carousel-controls, .scenario-toggle { display: none; } .scenario-answer { display: block !important; } body { padding: 12mm; } }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="download-button" type="button" onclick="window.print()" title="打印或另存为 PDF">下载 PDF</button>
+  </div>
+  <main class="section-content">
+    <p class="eyebrow">模块 02 · 快速占卜</p>
+    <h1>梅花易数</h1>
+
+    <h2>学习目标</h2>
+    <p>让小白先建立梅花易数的基本观察方式：会起一个简单卦，会看体用，会分清本卦、互卦、变卦分别代表什么。</p>
+
+    <h2>核心内容</h2>
+    <ul>
+      <li>数字、时间、物象等常见起卦方式；</li>
+      <li>本卦、互卦、变卦；</li>
+      <li>体卦与用卦；</li>
+      <li>生克关系的第一层判断。</li>
+    </ul>
+
+    <h2>先建立一条理解线</h2>
+    <div class="scenario">
+      <h3>梅花易数练的是“把现象变成卦”</h3>
+      <p>梅花易数不是靠某一个现象直接定吉凶，而是把时间、数字、声音、物象等外部信息转换成卦，再看卦与卦之间的关系。</p>
+      <p>小白阶段先不要追求复杂取象，先练“会起卦、会标体用、会用一句生活化语言描述变化”。</p>
+    </div>
+
+    <h2>知识点清单</h2>
+    <h3>常见起卦方式</h3>
+    <ul>
+      <li>年月日起卦；</li>
+      <li>数字起卦；</li>
+      <li>声音、物象、文字笔画起卦；</li>
+      <li>随心取数起卦。</li>
+    </ul>
+    <p>小白阶段建议固定使用数字起卦，先减少变量。</p>
+
+    <h3>本卦、互卦、变卦</h3>
+    <table>
+      <thead>
+        <tr><th>卦</th><th>主要看什么</th><th>小白理解</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>本卦</td><td>当下状态</td><td>现在这件事像什么</td></tr>
+        <tr><td>互卦</td><td>中间过程</td><td>接下来会经过什么</td></tr>
+        <tr><td>变卦</td><td>变化结果</td><td>事情往哪里走</td></tr>
+      </tbody>
+    </table>
+
+    <h3>体卦与用卦</h3>
+    <p>体卦代表自己或所问主体；用卦代表所问之事、对方或外部环境。</p>
+    <div class="mnemonic">
+      <strong>记忆口诀</strong>
+      <p>体为自己，用为所问；先分体用，再看生克。</p>
+    </div>
+    <ul>
+      <li>用生体：外部有助于自己；</li>
+      <li>体生用：自己在消耗或付出；</li>
+      <li>体用比和：关系较顺；</li>
+      <li>用克体：外部阻力较强。</li>
+    </ul>
+
+    <h3>八卦基础速查</h3>
+    <table>
+      <thead>
+        <tr><th>卦</th><th>自然象</th><th>家庭象</th><th>常见理解</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>乾</td><td>天</td><td>父</td><td>刚健、主动、领导</td></tr>
+        <tr><td>坤</td><td>地</td><td>母</td><td>包容、稳定、承载</td></tr>
+        <tr><td>震</td><td>雷</td><td>长男</td><td>启动、震动、变化</td></tr>
+        <tr><td>巽</td><td>风</td><td>长女</td><td>进入、传播、灵活</td></tr>
+        <tr><td>坎</td><td>水</td><td>中男</td><td>险、流动、深入</td></tr>
+        <tr><td>离</td><td>火</td><td>中女</td><td>明、热情、显现</td></tr>
+        <tr><td>艮</td><td>山</td><td>少男</td><td>停止、边界、等待</td></tr>
+        <tr><td>兑</td><td>泽</td><td>少女</td><td>喜悦、沟通、表达</td></tr>
+      </tbody>
+    </table>
+
+    <h2>情景案例</h2>
+    <section class="scenario-carousel" id="scenario-carousel" aria-label="梅花易数情景案例">
+      <article class="scenario-card">
+        <h3>1. 早上听到鸟叫，心里一直想着换工作</h3>
+        <p>你不是先纠结“到底该不该换”，而是先练习把外界信号变成一卦。</p>
+        <h4>怎么练</h4>
+        <p>用时间、数字或所见物象起卦，写出本卦、互卦、变卦，再标出体用。</p>
+        <h4>结论提示</h4>
+        <p>鸟叫只是起卦入口，不代表鸟叫本身决定吉凶。</p>
+      </article>
+      <article class="scenario-card">
+        <h3>2. 合作沟通时总是被打断</h3>
+        <p>你想判断当前沟通的问题是来自对方、来自时机，还是来自自己的表达方式。</p>
+        <h4>怎么练</h4>
+        <p>先只看体用：体是你，用是沟通这件事。再看生克，把结果翻译成“谁在推动、谁在消耗、谁在阻碍”。</p>
+        <h4>结论提示</h4>
+        <p>不要直接下吉凶，先判断阻力来源，再决定调整表达还是暂停沟通。</p>
+      </article>
+      <article class="scenario-card">
+        <h3>3. 临时机会要不要追</h3>
+        <p>一个机会突然出现，你有兴趣，但信息不多。</p>
+        <h4>怎么练</h4>
+        <p>固定用数字起卦，比较本卦和变卦：现在是“想追”，变化后是“更顺”还是“更多阻力”。</p>
+        <h4>结论提示</h4>
+        <p>梅花易数适合看方向和变化，不替代尽调、合同和成本判断。</p>
+      </article>
+    </section>
+    <div class="carousel-controls">
+      <button type="button" id="scenario-prev" aria-label="上一个情景">‹</button>
+      <button type="button" id="scenario-next" aria-label="下一个情景">›</button>
+    </div>
+
+    <h2>练习</h2>
+    <ul>
+      <li>固定一种起卦法，连续练习三天；</li>
+      <li>写下本卦、互卦、变卦；</li>
+      <li>标出体卦和用卦；</li>
+      <li>先用一句话描述“当下状态”，再用一句话描述“接下来可能的变化”。</li>
+    </ul>
+    <div class="practice-entry-grid" aria-label="练习入口">
+      <a class="practice-entry" href="练习.html">
+        <span class="entry-kicker">自动化练习</span>
+        <span class="entry-title">进入自动化练习</span>
+        <span class="entry-desc">梅花易数练习模块待接入，当前先完成基础内容学习。</span>
+        <span class="entry-action">开始练习 →</span>
+      </a>
+      <a class="practice-entry" href="题库预览.html">
+        <span class="entry-kicker">题库总览</span>
+        <span class="entry-title">题库预览</span>
+        <span class="entry-desc">梅花易数题库待接入，当前先查看知识点与情景案例。</span>
+        <span class="entry-action">查看题库 →</span>
+      </a>
+    </div>
+
+    <h2>学习技巧</h2>
+    <ul>
+      <li>先背八卦的自然象和卦画，再学起卦；</li>
+      <li>把“体用”翻译成“我和这件事”，不要只背生克；</li>
+      <li>先只抓一个主信号，不追求面面俱到；</li>
+      <li>每次记录判断，之后回看实际结果。</li>
+    </ul>
+
+    <h2>资料来源与边界</h2>
+    <ul>
+      <li>本页为梅花易数基础学习结构，尚未接入外部资料；</li>
+      <li>当前只保留起卦、体用、三卦关系和基础八卦象意，不涉及复杂断卦与专业决策。</li>
+    </ul>
+  </main>
+
+  <script>
+    document.querySelectorAll(".scenario-card").forEach((card) => {
+      const title = card.querySelector("h3");
+      const question = card.querySelector("p");
+      if (!title || !question) return;
+
+      const rest = [...card.children].filter((el) => el !== title && el !== question);
+      const button = document.createElement("button");
+      const answer = document.createElement("div");
+
+      button.type = "button";
+      button.className = "scenario-toggle";
+      button.textContent = "查看解析";
+
+      answer.className = "scenario-answer";
+      answer.hidden = true;
+      rest.forEach((el) => answer.appendChild(el));
+
+      card.appendChild(button);
+      card.appendChild(answer);
+
+      button.addEventListener("click", () => {
+        const willOpen = answer.hidden;
+        answer.hidden = !willOpen;
+        button.textContent = willOpen ? "收起解析" : "查看解析";
+      });
+    });
+
+    const carousel = document.getElementById("scenario-carousel");
+    const prev = document.getElementById("scenario-prev");
+    const next = document.getElementById("scenario-next");
+    prev.addEventListener("click", () => carousel.scrollBy({ left: -Math.min(420, carousel.clientWidth * 0.8), behavior: "smooth" }));
+    next.addEventListener("click", () => carousel.scrollBy({ left: Math.min(420, carousel.clientWidth * 0.8), behavior: "smooth" }));
+  </script>
+</body>
+</html>
